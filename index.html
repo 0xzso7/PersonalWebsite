@@ -6,13 +6,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Portfolio</title>
 </head>
 <body>
     <!-- Home Section -->
     <section class="home">
-        <div class="container">
+        <div class="container" data-aos="fade-up">
             <h1>Zach<br>Magistrado</h1>
             <h2>I am Zach, a Computer Science student from FEU Alabang, passionate about building 
                 websites, programming, and creating innovative solutions through technology.</h2>
@@ -21,17 +24,17 @@
 
     <!-- About Section -->
     <section class="about">
-        <div class="container timeline">
+        <div class="container timeline" data-aos="fade-right">
             <div class="col-1">
                 <h1>About Me:</h1>
             </div>
             <div class="col-2">
                 <div class="line"></div>
             </div>
-            <div class="col-4 about-image">
-                <img src="AboutMeImage.jpg" alt="Zach" class="small-img">
+            <div class="col-4 about-image" data-aos="zoom-in">
+                <img src="Assets/AboutMeImage.jpg" alt="Zach" class="small-img">
             </div>
-            <div class="col-3 about-content">
+            <div class="col-3 about-content" data-aos="fade-left">
                 <div class="about-text">
                     <p>
                         A dedicated 4th-year Computer Science student specializing in Software Engineering at FEU 
@@ -46,7 +49,7 @@
 
     <!-- Portfolio Section -->
     <section class="portfolio">
-        <div class="container timeline">
+        <div class="container timeline" data-aos="fade-up">
             <div class="col-1">
                 <h1>Portfolio:</h1>
             </div>
@@ -54,11 +57,42 @@
                 <div class="line"></div>
             </div>
             <div class="col-3">
-                <div class="projects">
-                    <div class="card">Project 1</div>
-                    <div class="card">Project 2</div>
-                    <div class="card">Project 3</div>
-                    <div class="card">Project 4</div>
+                <div class="portfolio-carousel-container">
+                    <section id="image-carousel" class="splide" aria-label="Portfolio Projects">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide"
+                                        data-title="Simpu: Piano Learning App" 
+                                        data-description="This web-based application uses real-time audio signal processing to detect piano frequencies and track musical notes as they are played. Built with HTML, CSS, and JavaScript, it leverages pitch detection algorithms to analyze live input and display corresponding notes. The project demonstrates skills in audio processing, algorithmic logic, and interactive web development."
+                                        data-github="https://github.com/0xzso7/Real-Time-Piano-Frequency-Detection-and-Note-Tracking"
+                                        data-demo="https://github.com/0xzso7/Real-Time-Piano-Frequency-Detection-and-Note-Tracking">
+                                    <img src="Assets/Simpu.webp" alt="Simpu Piano Learning App">
+                                    <div class="slide-description">Simpu: Piano Learning App</div>
+                                </li>
+                                <li class="splide__slide"
+                                        data-title="Weather App" 
+                                        data-description="This Python-based desktop application allows users to check real-time weather conditions for any city using a simple graphical interface built with Tkinter. It integrates the OpenWeatherMap API to display the current temperature and weather description. The project demonstrates practical skills in API integration, GUI development, and real-world data handling."
+                                        data-github="https://github.com/0xzso7/Weather_App"
+                                        data-demo="https://github.com/0xzso7/Weather_App">
+                                    <img src="Assets/Weather App.webp" alt="Weather App">
+                                    <div class="slide-description">Weather App</div>
+                                </li>
+                                <li class="splide__slide"
+                                        data-title="Simple Calculator in JavaScript" 
+                                        data-description="This is a simple web-based calculator built with HTML, CSS, and JavaScript. It features a clean, responsive interface for performing basic arithmetic operations like addition, subtraction, multiplication, and division. The project showcases core web development skills in front-end design and interactivity."
+                                        data-github="https://github.com/0xzso7/Weather_App"
+                                        data-demo="https://github.com/0xzso7/Weather_App">
+                                    <img src="Assets/Simple Calculator.webp" alt="Simple Calculator">
+                                    <div class="slide-description">Simple Calculator</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    <div class="carousel-navigation">
+                        <button class="nav-arrow" id="prev-btn">&lt;</button>
+                        <button class="view-more" id="view-more-btn">View More</button>
+                        <button class="nav-arrow" id="next-btn">&gt;</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,7 +100,7 @@
 
     <!-- Education Section -->
     <section class="education">
-        <div class="container timeline">
+        <div class="container timeline" data-aos="fade-right">
             <div class="col-1">
                 <h1>Education:</h1>
             </div>
@@ -92,12 +126,12 @@
 
     <!-- Certifications Section -->
     <section class="certifications">
-        <div class="container timeline">
+        <div class="container timeline" data-aos="fade-left">
             <div class="col-1">
                 <h1>Certificate:</h1>
             </div>
             <div class="col-2">
-                <div class="line"></div> <!-- Use the same class for consistency -->
+                <div class="line"></div>
             </div>
             <div class="col-3">
                 <ul>
@@ -114,7 +148,7 @@
 
     <!-- Hard Skills Section -->
     <section class="hard-skills">
-        <div class="container timeline">
+        <div class="container timeline" data-aos="fade-up">
             <div class="col-1">
                 <h1>Hard Skills:</h1>
             </div>
@@ -138,7 +172,7 @@
 
     <!-- Soft Skills Section -->
     <section class="soft-skills">
-        <div class="container timeline">
+        <div class="container timeline" data-aos="fade-right">
             <div class="col-1">
                 <h1>Soft Skills:</h1>
             </div>
@@ -160,7 +194,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container timeline">
+        <div class="container timeline" data-aos="zoom-in">
             <div class="col-1">
                 <h1>Contact Me</h1>
             </div>
@@ -185,9 +219,103 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
-                <p>For inquiries or collaboration opportunities, feel free to reach out via email or connect with me on social media.</p>
+                <p>For inquiries or collaboration opportunities, feel free to reach out via email or connect with me on social media.</p>   
+                <p>© 2024 Zach Magistrado. All rights reserved.</p>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="portfolio-modal" class="hidden modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <img id="modal-image" src="" alt="Project Image">
+                <h2 id="modal-title">Project Title</h2>
+                <p id="modal-description">Project description goes here.</p>
+                <!-- Buttons -->
+                <div class="modal-buttons">
+                <a id="github-link" href="#" target="_blank" class="modal-btn">GitHub</a>
+                <!-- <a id="demo-link" href="#" target="_blank" class="modal-btn">Live Demo</a> -->
+                </div>
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+        easing: 'ease-in-out'
+    });
+
+    const splide = new Splide('#image-carousel', {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        autoplay: true,
+        interval: 4000,
+        speed: 800,
+        gap: '1rem',
+        pagination: false,
+        arrows: false,
+        drag: true,
+        keyboard: true,
+        focus: 'center',
+        trimSpace: false,
+        lazyLoad: 'nearby',
+        breakpoints: {
+            640: { pagination: true },
+            480: { gap: '0.5rem' }
+        }
+    }).mount();
+
+    // Navigation
+    document.getElementById('prev-btn').addEventListener('click', () => splide.go('<'));
+    document.getElementById('next-btn').addEventListener('click', () => splide.go('>'));
+
+    // Modal logic
+    const modal = document.getElementById('portfolio-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-description');
+    const closeModal = document.querySelector('.close-btn');
+    const githubLink = document.getElementById('github-link');
+    // const demoLink = document.getElementById('demo-link');
+
+    function openModalFromSlide(slide) {
+    modalImage.src = slide.querySelector('img').src;
+    modalTitle.textContent = slide.dataset.title;
+    modalDesc.textContent = slide.dataset.description;
+
+    // Update buttons hrefs with fallback to '#'
+    githubLink.href = slide.dataset.github || '#';
+    // demoLink.href = slide.dataset.demo || '#';
+
+    modal.classList.remove('hidden');
+    }
+
+    // View More button
+    document.getElementById('view-more-btn').addEventListener('click', () => {
+        const currentSlide = splide.Components.Slides.getAt(splide.index).slide;
+        openModalFromSlide(currentSlide);
+    });
+
+    // Clickable slides
+    document.querySelectorAll('.splide__slide').forEach(slide => {
+        slide.addEventListener('click', () => {
+            openModalFromSlide(slide);
+        });
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
+</script>
+
+
 </body>
 </html>
