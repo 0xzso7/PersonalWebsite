@@ -362,9 +362,17 @@ footer h2 {
     gap: 20px;
 }
 
+.form-group {
+    position: relative;
+}
+
+.form-group:focus-within .input-icon {
+    color: #cfc7b1;
+}
+
 .form-group input{
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px 15px 12px 40px;
     border: 1px solid #333;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.9);
@@ -374,7 +382,7 @@ footer h2 {
 
 .form-group textarea {
   width: 100%;
-  padding: 12px 15px;
+  padding: 12px 15px 12px 40px;
   border: 1px solid #333;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.9);
@@ -389,6 +397,16 @@ footer h2 {
     outline: none;
     border-color: #cfc7b1;
     box-shadow: 0 0 0 2px rgba(207, 199, 177, 0.3);
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 1rem;
+    pointer-events: none;
 }
 
 .form-submit-btn {
@@ -416,12 +434,6 @@ footer h2 {
     text-align: center;
     margin: 30px 0 15px;
     color: rgba(255, 255, 255, 0.7);
-}
-
-.copyright {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.9rem;
 }
 
 /* Back to Top Button */
