@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>Portfolio</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>0xzso7 Personal Website</title>
+    <meta name="description" content="0xzso7 Personal Website | Computer Science Student | Web Developer">
+    <meta property="og:title" content="0xzso7 - Website">
+    <meta property="og:image" content="./assets/images/Simpu.webp">
 </head>
 <body>
     <!-- Home Section -->
@@ -32,7 +35,7 @@
                 <div class="line"></div>
             </div>
             <div class="col-4 about-image" data-aos="zoom-in">
-                <img src="Assets/AboutMeImage.jpg" alt="Zach" class="small-img">
+                <img src="./Assets/images/AboutMeImage.jpg" alt="Zach" class="small-img">
             </div>
             <div class="col-3 about-content" data-aos="fade-left">
                 <div class="about-text">
@@ -66,7 +69,7 @@
                                         data-description="This web-based application uses real-time audio signal processing to detect piano frequencies and track musical notes as they are played. Built with HTML, CSS, and JavaScript, it leverages pitch detection algorithms to analyze live input and display corresponding notes. The project demonstrates skills in audio processing, algorithmic logic, and interactive web development."
                                         data-github="https://github.com/0xzso7/Real-Time-Piano-Frequency-Detection-and-Note-Tracking"
                                         data-demo="https://github.com/0xzso7/Real-Time-Piano-Frequency-Detection-and-Note-Tracking">
-                                    <img src="Assets/Simpu.webp" alt="Simpu Piano Learning App">
+                                    <img src="./Assets/images/Simpu.webp" alt="Simpu Piano Learning App">
                                     <div class="slide-description">Simpu: Piano Learning App</div>
                                 </li>
                                 <li class="splide__slide"
@@ -74,7 +77,7 @@
                                         data-description="This Python-based desktop application allows users to check real-time weather conditions for any city using a simple graphical interface built with Tkinter. It integrates the OpenWeatherMap API to display the current temperature and weather description. The project demonstrates practical skills in API integration, GUI development, and real-world data handling."
                                         data-github="https://github.com/0xzso7/Weather_App"
                                         data-demo="https://github.com/0xzso7/Weather_App">
-                                    <img src="Assets/Weather App.webp" alt="Weather App">
+                                    <img src="./Assets/images/Weather App.webp" alt="Weather App">
                                     <div class="slide-description">Weather App</div>
                                 </li>
                                 <li class="splide__slide"
@@ -82,16 +85,16 @@
                                         data-description="This is a simple web-based calculator built with HTML, CSS, and JavaScript. It features a clean, responsive interface for performing basic arithmetic operations like addition, subtraction, multiplication, and division. The project showcases core web development skills in front-end design and interactivity."
                                         data-github="https://github.com/0xzso7/Simple-JavaScript-Calculator"
                                         data-demo="https://github.com/0xzso7/Simple-JavaScript-Calculator">
-                                    <img src="Assets/Simple Calculator.webp" alt="Simple Calculator">
+                                    <img src="./Assets/images/Simple Calculator.webp" alt="Simple Calculator">
                                     <div class="slide-description">Simple Calculator</div>
                                 </li>
                             </ul>
                         </div>
                     </section>
                     <div class="carousel-navigation">
-                        <button class="nav-arrow" id="prev-btn">&lt;</button>
+                        <button aria-label="Previous project" class="nav-arrow" id="prev-btn">&lt;</button>
                         <button class="view-more" id="view-more-btn">View More</button>
-                        <button class="nav-arrow" id="next-btn">&gt;</button>
+                        <button aria-label="Next project" class="nav-arrow" id="next-btn">&gt;</button>
                     </div>
                 </div>
             </div>
@@ -196,123 +199,78 @@
     <footer>
         <div class="container timeline">
             <div class="col-1" data-aos="zoom-in">
-                <h1>Contact Me</h1>
+                <h1>Contact Info:</h1>
             </div>
             <div class="col-2">
                 <div class="line-1"></div>
             </div>
             <div class="col-3" data-aos="zoom-in">
-                <div class="social">
-                    <a href="https://www.facebook.com/magistrado.zach.25/" target="_blank" aria-label="Facebook">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/zsmagistrado/" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/0xzso7" target="_blank" aria-label="Github">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:magistradozach@gmail.com" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                <!-- Social Media Section -->
+                <div class="contact-section">
+                    <p class="section-label">Connect With Me:</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/magistrado.zach.25/" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/zsmagistrado/" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/0xzso7" target="_blank" aria-label="Github">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:magistradozach@gmail.com" target="_blank" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
-                <p>For inquiries or collaboration opportunities, feel free to reach out via email or connect with me on social media.</p>   
-                <p>© 2024 Zach Magistrado. All rights reserved.</p>
+                
+                <!-- Contact Form Section -->
+                <div class="contact-section">
+                    <p class="section-label">Send A Message:</p>
+                    <div id="contact-form" class="email-form-container">
+                        <form action="https://formspree.io/f/xkgbzekq" method="POST" class="email-form">
+                            <input type="hidden" name="_subject" value="New message from personal website!">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="form-submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                    <p>For inquiries or collaboration opportunities, feel free to reach out via email or connect with me on social media.</p>   
+                    <p>© 2024 Zach Magistrado. All rights reserved.</p>
+                </div>
             </div>
-        </div>
 
-        <!-- Modal -->
-        <div id="portfolio-modal" class="hidden modal">
-            <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <img id="modal-image" src="" alt="Project Image">
-                <h2 id="modal-title">Project Title</h2>
-                <p id="modal-description">Project description goes here.</p>
-                <!-- Buttons -->
-                <div class="modal-buttons">
-                <a id="github-link" href="#" target="_blank" class="modal-btn">GitHub</a>
-                <!-- <a id="demo-link" href="#" target="_blank" class="modal-btn">Live Demo</a> -->
+            <!-- Modal -->
+            <div id="portfolio-modal" class="hidden modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <img id="modal-image" src="" alt="Project Image">
+                    <h2 id="modal-title">Project Title</h2>
+                    <p id="modal-description">Project description goes here.</p>
+                    <!-- Buttons -->
+                    <div class="modal-buttons">
+                    <a id="github-link" href="#" target="_blank" class="modal-btn">GitHub</a>
+                    <!-- <a id="demo-link" href="#" target="_blank" class="modal-btn">Live Demo</a> -->
+                    </div>
                 </div>
             </div>
+            <!-- Back to Top Button -->
+            <a href="#top" class="back-to-top" aria-label="Back to top">
+                <i class="fas fa-arrow-up"></i>
+            </a>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-    AOS.init({
-        duration: 1000,
-        once: true,
-        easing: 'ease-in-out'
-    });
-
-    const splide = new Splide('#image-carousel', {
-        type: 'loop',
-        perPage: 1,
-        perMove: 1,
-        autoplay: true,
-        interval: 4000,
-        speed: 800,
-        gap: '1rem',
-        pagination: false,
-        arrows: false,
-        drag: true,
-        keyboard: true,
-        focus: 'center',
-        trimSpace: false,
-        lazyLoad: 'nearby',
-        breakpoints: {
-            640: { pagination: true },
-            480: { gap: '0.5rem' }
-        }
-    }).mount();
-
-    // Navigation
-    document.getElementById('prev-btn').addEventListener('click', () => splide.go('<'));
-    document.getElementById('next-btn').addEventListener('click', () => splide.go('>'));
-
-    // Modal logic
-    const modal = document.getElementById('portfolio-modal');
-    const modalImage = document.getElementById('modal-image');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-description');
-    const closeModal = document.querySelector('.close-btn');
-    const githubLink = document.getElementById('github-link');
-    // const demoLink = document.getElementById('demo-link');
-
-    function openModalFromSlide(slide) {
-    modalImage.src = slide.querySelector('img').src;
-    modalTitle.textContent = slide.dataset.title;
-    modalDesc.textContent = slide.dataset.description;
-
-    // Update buttons hrefs with fallback to '#'
-    githubLink.href = slide.dataset.github || '#';
-    // demoLink.href = slide.dataset.demo || '#';
-
-    modal.classList.remove('hidden');
-    }
-
-    // View More button
-    document.getElementById('view-more-btn').addEventListener('click', () => {
-        const currentSlide = splide.Components.Slides.getAt(splide.index).slide;
-        openModalFromSlide(currentSlide);
-    });
-
-    // Clickable slides
-    document.querySelectorAll('.splide__slide').forEach(slide => {
-        slide.addEventListener('click', () => {
-            openModalFromSlide(slide);
-        });
-    });
-
-    // Close modal
-    closeModal.addEventListener('click', () => modal.classList.add('hidden'));
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.add('hidden');
-        }
-    });
-</script>
-
+    <script src="./js/script.js"></script>
 
 </body>
 </html>
