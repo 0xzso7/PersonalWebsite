@@ -195,7 +195,7 @@ section:nth-child(even) .col-2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f8f9fa;
+    background: #000000;
     border-radius: 10px;
     overflow: hidden;
     min-height: 300px;
@@ -252,7 +252,7 @@ section:nth-child(even) .col-2 {
 }
 
 .nav-arrow:hover {
-    background: #fff;
+    background: #cfc7b1; 
     color: #000;
 }
 
@@ -262,8 +262,8 @@ section:nth-child(even) .nav-arrow:hover {
 
 .view-more {
     background-color: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+    color: #000000;
+    border: 2px solid #000000;
     padding: 10px 16px;
     font-weight: 500;
     cursor: pointer;
@@ -275,7 +275,7 @@ section:nth-child(even) .nav-arrow:hover {
 
 .view-more:hover {
 
-    background-color: #fff;
+    background-color: #cfc7b1;
     color: #000;
 }
 
