@@ -29,18 +29,42 @@ body {
     padding: 40px 20px;
 }
 
-h1,
-h2,
-h3,
-h4 {
+/* Consistent heading styles */
+h1 {
+    font-size: clamp(2.5rem, 4vw, 2rem);
+    margin-right: 20px; 
     margin-bottom: 20px;
     word-wrap: break-word;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin-bottom: 15px;
+    word-wrap: break-word;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    font-weight: 500;
+}
+
+h4 {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    font-weight: 500;
 }
 
 p {
-    margin-bottom: 20px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin-bottom: 15px;
     text-align: justify;
     word-wrap: break-word;
+    line-height: 1.6;
 }
 
 /* Alternating Background Colors */
@@ -94,7 +118,7 @@ section:nth-child(even) {
 }
 
 .col-1 {
-    flex: 0 0 150px;
+    flex: 0 1 300px;
     margin-left: 1rem;
     text-align: right;
     min-width: 0;
@@ -171,7 +195,39 @@ section:nth-child(even) .col-2 {
     }
 }
 
-/* Fixed Splide Carousel Styles */
+/* Lists - Consistent styling for all sections */
+ul {
+    padding-left: 20px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+}
+
+li {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* Specific section fixes */
+.experience ul,
+.certifications ul,
+.hard-skills ul,
+.soft-skills ul {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+}
+
+.experience li,
+.certifications li,
+.hard-skills li,
+.soft-skills li {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Portfolio Carousel Styles */
 .portfolio-carousel-container {
     width: 100%;
     max-width: 800px;
@@ -219,7 +275,7 @@ section:nth-child(even) .col-2 {
     right: 15px;
     color: white;
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     font-weight: 500;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -262,8 +318,8 @@ section:nth-child(even) .nav-arrow:hover {
 
 .view-more {
     background-color: transparent;
-    color: #000000;
-    border: 2px solid #000000;
+    color: currentColor;
+    border: 2px solid currentColor;
     padding: 10px 16px;
     font-weight: 500;
     cursor: pointer;
@@ -274,20 +330,8 @@ section:nth-child(even) .nav-arrow:hover {
 }
 
 .view-more:hover {
-
     background-color: #cfc7b1;
     color: #000;
-}
-
-
-/* Lists */
-ul {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 10px;
-    word-wrap: break-word;
 }
 
 /* Footer */
@@ -308,7 +352,7 @@ footer h2 {
 }
 
 .section-label {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     margin-bottom: 15px;
     text-align: center;
     color: #000000;
@@ -381,15 +425,15 @@ footer h2 {
 }
 
 .form-group textarea {
-  width: 100%;
-  padding: 12px 15px 12px 40px;
-  border: 1px solid #333;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.9);
-  font-family: 'Poppins', sans-serif;
-  transition: border-color 0.3s ease;
-  resize: none; /* Optional: disables manual resizing */
-  overflow: hidden; /* Important: allows auto-height to work nicely */
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+    resize: none;
+    overflow: hidden;
 }
 
 .form-group input:focus,
@@ -438,7 +482,6 @@ footer h2 {
 
 /* Back to Top Button */
 .back-to-top {
-    /* Match your social button style */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -451,14 +494,10 @@ footer h2 {
     font-size: 1.5rem;
     transition: background-color 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-
-    /* Positioning */
     position: fixed;
     bottom: 30px;
     right: 30px;
     z-index: 1000;
-
-    /* Initially hidden */
     opacity: 0;
     pointer-events: none;
     transform: translateY(20px);
@@ -476,136 +515,10 @@ footer h2 {
     transform: translateY(0);
 }
 
-/* Responsive Media Queries */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px 15px;
-    }
-
-    .timeline {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .col-1 {
-        flex: 1 1 100%;
-        text-align: left;
-        margin-bottom: 10px;
-    }
-
-    .col-2 {
-        height: 2px;
-        width: 100%;
-        flex: 1 1 100%;
-        margin: 10px 0;
-    }
-
-    .line,
-    .line-1 {
-        left: 0;
-        width: 100%;
-        height: 2px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .col-3 {
-        flex: 1 1 100%;
-    }
-
-    .home {
-        padding: 0 15px;
-        text-align: center;
-    }
-
-    .home h1 {
-        margin-bottom: 20px;
-    }
-
-    .home h2 {
-        margin-bottom: 20px;
-    }
-
-    .social {
-        gap: 20px;
-        margin-top: 20px;
-    }
-
-    .social a {
-        width: 55px;
-        height: 55px;
-        font-size: 1.3rem;
-    }
-
-    section:nth-child(odd),
-    section:nth-child(even) {
-        padding: 40px 0;
-    }
-
-    /* Mobile carousel adjustments */
-    .splide__slide {
-        min-height: 250px;
-    }
-
-    .splide__slide img {
-        max-height: 300px;
-    }
-
-    .slide-description {
-        font-size: 14px;
-        padding: 10px 12px;
-        bottom: 10px;
-        left: 10px;
-        right: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 20px 10px;
-    }
-
-    .home {
-        padding: 0 10px;
-    }
-
-    .home h1 {
-        font-size: 2rem;
-    }
-
-    .home h2 {
-        font-size: 1rem;
-    }
-
-    section:nth-child(odd),
-    section:nth-child(even) {
-        padding: 30px 0;
-    }
-
-    /* Small mobile carousel adjustments */
-    .splide__slide {
-        min-height: 200px;
-    }
-
-    .splide__slide img {
-        max-height: 250px;
-    }
-
-    .slide-description {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-}
-
-/* Custom Splide navigation styling - Hidden default arrows */
-.splide__arrow {
-    display: none !important;
-}
-
+/* Modal Styles */
 .modal {
     position: fixed;
     inset: 0;
-    /* shorthand for top, right, bottom, left = 0 */
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.75);
@@ -614,7 +527,6 @@ footer h2 {
     justify-content: center;
     z-index: 1000;
     padding: 1rem;
-    /* Adds spacing on smaller screens */
 }
 
 .modal.hidden {
@@ -655,43 +567,24 @@ footer h2 {
     position: absolute;
     top: 1rem;
     right: 1.5rem;
-    font-size: 1.5rem;
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    background-color: #eee;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    font-weight: bold;
     cursor: pointer;
-    background: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
     border: none;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive tweaks */
-@media (max-width: 480px) {
-    .modal-content {
-        padding: 1.25rem;
-    }
-
-    .modal-content h2 {
-        font-size: 1.25rem;
-    }
-
-    .modal-content p {
-        font-size: 0.95rem;
-    }
-
-    .close-btn {
-        font-size: 1.25rem;
-        top: 0.75rem;
-        right: 1rem;
-    }
+.close-btn:hover {
+    background-color: #dc2626;
+    color: white;
 }
 
 .modal-buttons {
@@ -717,23 +610,162 @@ footer h2 {
     background: #333;
 }
 
-.close-btn {
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    background-color: #eee;
-    border-radius: 0.25rem;
-    font-size: 1.25rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    user-select: none;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.close-btn:hover {
-    background-color: #dc2626;
-    /* Tailwind red-600 */
-    color: white;
+/* Custom Splide navigation styling - Hidden default arrows */
+.splide__arrow {
+    display: none !important;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    /* Timeline adjustments for mobile */
+    .timeline {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .col-1 {
+        flex: 1 1 100%;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-left: 0;
+    }
+
+    .col-2 {
+        height: 2px;
+        width: 100%;
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+
+    .line,
+    .line-1 {
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .col-3 {
+        flex: 1 1 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .home {
+        padding: 0 15px;
+        text-align: center;
+    }
+
+    .social {
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .social a {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+
+    section:nth-child(odd),
+    section:nth-child(even) {
+        padding: 40px 0;
+    }
+
+    /* Mobile carousel adjustments */
+    .splide__slide {
+        min-height: 250px;
+    }
+
+    .splide__slide img {
+        max-height: 300px;
+    }
+
+    .slide-description {
+        font-size: 14px;
+        padding: 10px 12px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+    /* Modal mobile adjustments */
+    .modal-content {
+        padding: 1.25rem;
+    }
+
+    .modal-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .modal-content p {
+        font-size: 0.95rem;
+    }
+
+    .close-btn {
+        font-size: 1.25rem;
+        top: 0.75rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 10px;
+    }
+
+    .home {
+        padding: 0 10px;
+    }
+
+    section:nth-child(odd),
+    section:nth-child(even) {
+        padding: 30px 0;
+    }
+
+    /* Small mobile carousel adjustments */
+    .splide__slide {
+        min-height: 200px;
+    }
+
+    .splide__slide img {
+        max-height: 250px;
+    }
+
+    .slide-description {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    /* Navigation adjustments */
+    .carousel-navigation {
+        gap: 15px;
+    }
+
+    .nav-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .view-more {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
 }
