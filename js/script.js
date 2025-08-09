@@ -6,7 +6,7 @@ AOS.init({
 
 const splide = new Splide('#image-carousel', {
     type: 'loop',
-    perPage: 1,
+    perPage: 2,
     perMove: 1,
     autoplay: true,
     interval: 4000,

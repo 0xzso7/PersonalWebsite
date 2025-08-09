@@ -230,7 +230,7 @@ li {
 /* Portfolio Carousel Styles */
 .portfolio-carousel-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 1440px;
     margin: 0 auto;
 }
 
@@ -254,7 +254,7 @@ li {
     background: #000000;
     border-radius: 10px;
     overflow: hidden;
-    min-height: 300px;
+    min-height: 10px;
 }
 
 .splide__slide img {
@@ -266,13 +266,21 @@ li {
     display: block;
     margin: 0 auto;
     border-radius: 8px;
+    border: 2px solid #cfc7b1;
+}
+
+.splide__slide img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+    z-index: 10;
 }
 
 .slide-description {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
     color: white;
     font-family: 'Poppins', sans-serif;
     font-size: clamp(14px, 2vw, 16px);
@@ -282,6 +290,7 @@ li {
     background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.7) 80%, transparent);
     padding: 8px 0;
     border-radius: 4px;
+    z-index: 20;
 }
 
 .carousel-navigation {
