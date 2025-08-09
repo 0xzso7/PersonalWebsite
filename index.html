@@ -16,8 +16,49 @@
     <meta property="og:image" content="./assets/images/Simpu.webp">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar" data-aos="fade-down">
+        <div class="container">
+            <a href="#home" class="navbar-brand">
+                <div class="logo-placeholder">Z</div>
+                Zach Magistrado
+            </a>
+            
+            <ul class="navbar-nav">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <!-- <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#hard-skills" class="nav-link">Hard Skills</a></li>
+                <li><a href="#soft-skills" class="nav-link">Soft Skills</a></li> -->
+                <li><a href="#contact" class="nav-link btn-contact">Contact Me</a></li>
+            </ul>
+            
+            <button class="navbar-toggle" id="navbar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <!-- TODO: paki ayos hindi pa nagana yung mobile menu kapag pipindot walang nang yayari -->
+        <div class="mobile-menu" id="mobile-menu" data-aos="fade-down">
+            <ul class="mobile-nav">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#hard-skills" class="nav-link">Hard Skills</a></li>
+                <li><a href="#soft-skills" class="nav-link">Soft Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Home Section -->
-    <section class="home">
+    <section class="home" id="home">
         <div class="container" data-aos="fade-up">
             <h1>Zach<br>Magistrado</h1>
                 <h2>
@@ -29,7 +70,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about" id="about">
         <div class="container timeline">
             <div class="col-1" data-aos="fade-right">
                 <h1>About Me:</h1>
@@ -45,16 +86,16 @@
                     <p>
                         I am a graduating Computer Science student majoring in Software Engineering at FEU Alabang, currently seeking 
                         full-time job opportunities in the tech industry. With a strong background in programming, web development, 
-                        and hands-on experience from academic and personal projects, I am driven to apply my skills in a professional 
-                        setting, continuously learn, and contribute to impactful solutions.
-                    </p>
+                        software development and hands-on experience from academic and personal projects, I am driven to apply my skills 
+                        in a professional setting, continuously learn, and contribute to impactful solutions.
+                    </p>    
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section (Updated) -->
-    <section class="experience">
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
     <div class="container timeline">
         <div class="col-1" data-aos="fade-right">
         <h1>Experience:</h1>
@@ -86,7 +127,7 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section class="portfolio">
+    <section class="portfolio" id="portfolio">
         <div class="container timeline">
             <div class="col-1" data-aos="fade-up">
                 <h1>Portfolio:</h1>
@@ -145,7 +186,7 @@
     </section>
 
     <!-- Education Section -->
-    <section class="education">
+    <section class="education" id="education">
         <div class="container timeline">
             <div class="col-1" data-aos="fade-right">
                 <h1>Education:</h1>
@@ -171,10 +212,10 @@
     </section>
 
     <!-- Certifications Section -->
-    <section class="certifications">
+    <section class="certifications" id="certifications">
         <div class="container timeline" >
             <div class="col-1" data-aos="fade-left">
-                <h1>Certificate:</h1>
+                <h1>Certifications:</h1>
             </div>
             <div class="col-2">
                 <div class="line"></div>
@@ -193,8 +234,8 @@
     </section>
 
     <!-- Hard Skills Section -->
-    <section class="hard-skills">
-        <div class="container timeline" >   
+    <section class="hard-skills" id="hard-skills">
+        <div class="container timeline">
             <div class="col-1" data-aos="fade-up">
                 <h1>Hard Skills:</h1>
             </div>
@@ -219,7 +260,7 @@
     </section>
 
     <!-- Soft Skills Section -->
-    <section class="soft-skills">
+    <section class="soft-skills" id="soft-skills">
         <div class="container timeline">
             <div class="col-1" data-aos="fade-right">
                 <h1>Soft Skills:</h1>
@@ -242,7 +283,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container timeline">
+        <div class="container timeline" id="contact">
             <div class="col-1" data-aos="zoom-in">
                 <h1>Contact Info:</h1>
             </div>
@@ -292,7 +333,7 @@
                     </div>
                 </div>
                     <p>For inquiries or collaboration opportunities, feel free to reach out via email or connect with me on social media.</p>   
-                    <p>© 2024 Zach Magistrado. All rights reserved.</p>
+                    <p>© 2024 Zach Stephan Magistrado. All rights reserved.</p>
                 </div>
             </div>
 

@@ -93,3 +93,32 @@ function checkFooterVisibility() {
 // Run on scroll and initial load
 window.addEventListener('scroll', checkFooterVisibility);
 window.addEventListener('load', checkFooterVisibility);
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    // Intersection Observer setup
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active from all links
+                    navLinks.forEach(link => link.classList.remove("active"));
+                    
+                    // Highlight the current link
+                    const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add("active");
+                    }
+                }
+            });
+        },
+        {
+            threshold: 0.4
+        }
+    );
+
+    // Observe each section
+    sections.forEach(section => observer.observe(section));
+});
