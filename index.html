@@ -111,9 +111,10 @@
     </h1>
 
     <p class="hero-lede">
-      I'm a software engineer. The work I get handed is usually the bug that will not reproduce
-      or the slowness nobody can pin down, and <em>I am good at both</em>. Right now I do that on a
-      commerce platform used by merchants in the Philippines and Thailand.
+      I'm a software engineer in Metro Manila. I work on the problems that are hard to track down:
+      <em>bugs nobody can make happen twice</em>, and pages that are slow for no obvious reason. Most
+      recently I did that for a shopping platform used by small businesses in the Philippines
+      and Thailand.
     </p>
 
     <div class="hero-actions">
@@ -130,17 +131,17 @@
   <div class="wrap numbers-grid">
     <a class="metric" href="#hl-perf">
       <span class="metric-v">85</span>
-      <span class="metric-l">Lighthouse performance score I took a production storefront to, from 60</span>
+      <span class="metric-l">Lighthouse speed score on a live storefront, up from 60</span>
       <span class="metric-go">See how<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
     </a>
     <a class="metric" href="#hl-query">
       <span class="metric-v">1</span>
-      <span class="metric-l">Database call I reduced a checkout validation to, from one per line item</span>
+      <span class="metric-l">Database call at checkout, down from one for every item in the cart</span>
       <span class="metric-go">See how<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
     </a>
     <a class="metric" href="#hl-regions">
       <span class="metric-v">2</span>
-      <span class="metric-l">Production regions I ship to from one codebase, Philippines and Thailand</span>
+      <span class="metric-l">Countries running on the same codebase, the Philippines and Thailand</span>
       <span class="metric-go">See how<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
     </a>
   </div>
@@ -160,28 +161,31 @@
     <div class="about-grid">
       <div class="about-lead">
         <p>
-          I'm a software engineer based in Metro Manila. I studied Computer Science at FEU Alabang
-          and I work across the stack: Angular on the front, Django and PostgreSQL behind it, plus the
-          Python automation and BigQuery pipelines that keep the reporting honest.
+          I'm a software engineer based in Metro Manila, with a Computer Science degree from FEU
+          Alabang. I work on both sides of an application: the screens people use, which I build
+          in Angular, and the server and database behind them, which I build in Django and
+          PostgreSQL. I also write the Python scripts and BigQuery pipelines that turn everything
+          the system records into reports the business can read.
         </p>
         <p>
-          What I get assigned is the stuff nobody else could pin down. A checkout that hangs. A product
-          that goes back to its old details after it was saved. Two background workers quietly
-          overwriting each other. I spend a good amount of my time reading logs and reproducing the
-          issue before I write any code, because a fix you cannot verify usually just moves the bug.
+          I usually get handed the bugs nobody else has been able to explain. A checkout that
+          freezes halfway through. A product that goes back to its old details right after someone
+          saves it. Two background processes quietly undoing each other's work. Most of my time on
+          these goes into reading logs and getting the bug to happen again on purpose. The fix
+          itself is often only a few lines.
         </p>
         <p>
-          The main difference from school is that the problems are real. It's someone's actual store
-          and their actual inventory, not a hypothetical exercise. That's the part I want more of.
+          I'm looking for a team that works on this kind of problem, where real people depend on
+          the software and it matters when it breaks.
         </p>
       </div>
 
       <aside class="about-side">
-        <p class="side-label">Currently</p>
+        <p class="side-label">Focus</p>
         <ul class="side-list">
-          <li><span class="dot" aria-hidden="true"></span> Full stack work on an offline-first commerce app</li>
-          <li><span class="dot" aria-hidden="true"></span> Performance and sync bugs</li>
-          <li><span class="dot" aria-hidden="true"></span> Internal tools, automation and data pipelines</li>
+          <li><span class="dot" aria-hidden="true"></span> Building the app and the server behind it</li>
+          <li><span class="dot" aria-hidden="true"></span> Making slow pages fast, and keeping data in sync</li>
+          <li><span class="dot" aria-hidden="true"></span> Internal tools, automation and reporting</li>
         </ul>
         <p class="side-label">Reachable at</p>
         <a class="side-mail" href="mailto:magistradozach@gmail.com">magistradozach@gmail.com</a>
@@ -203,34 +207,37 @@
     <div class="steps">
       <div class="step">
         <span class="step-n">01</span>
-        <h3>Reproduce it before touching it</h3>
-        <p>Most of what I get handed is the bug nobody can trigger on demand. For the duplicate
-          inventory issue I spent days throttling my browser to 3G and switching tabs mid-save until
-          it finally happened. A fix you cannot verify usually just moves the bug somewhere else.</p>
+        <h3>Make the bug happen before I fix it</h3>
+        <p>Most of the bugs I get cannot be made to happen on command, which is what makes them
+          hard. For the duplicate inventory bug I slowed my browser to 3G speed and kept switching
+          tabs while saving, for days, until it finally happened. If you cannot make a bug appear,
+          you cannot prove you fixed it.</p>
       </div>
 
       <div class="step">
         <span class="step-n">02</span>
         <h3>Logs before theories</h3>
-        <p>I read Datadog and put debugging into the real flow before I commit to an explanation.
-          That is how the duplicate variants turned out to be a merchant hitting Save inside the
-          30-second sync window, which is not something I would have guessed from the ticket.</p>
+        <p>Before I settle on what is causing a problem, I look at what the system actually
+          recorded. I read the logs in Datadog and add my own logging to the live code. That is how
+          the duplicate products turned out to be merchants pressing Save during the 30 seconds
+          when the app was syncing in the background. Nothing in the bug report pointed there.</p>
       </div>
 
       <div class="step">
         <span class="step-n">03</span>
         <h3>Measure the real thing</h3>
-        <p>I ran the storefront Lighthouse scores against production builds instead of
-          <code>ng serve</code>. A dev server does not apply cache headers, so the number it gives
-          you is not the number your users get. Optimizing against it wastes weeks.</p>
+        <p>I tested the storefront's speed on a real production build, not on the development
+          server (<code>ng serve</code>) running on my laptop. The development server skips the
+          caching that makes a live site fast, so the score it gives you is not the score your
+          users get. Tuning against that number wastes weeks.</p>
       </div>
 
       <div class="step">
         <span class="step-n">04</span>
-        <h3>Say when the fix is not in my layer</h3>
-        <p>Once the storefront reached 85, what was left was backend product fetching. I said so and
-          handed it over rather than spending another week shaving the frontend for points that were
-          not there to win.</p>
+        <h3>Say when the fix belongs elsewhere</h3>
+        <p>Once the storefront reached 85, the rest of the delay was coming from how the backend
+          fetched products, not from anything on the frontend. I said so and handed it to the right
+          person, rather than spend another week chasing points I could not win.</p>
       </div>
     </div>
   </div>
@@ -246,14 +253,15 @@
       <div class="role-head">
         <div>
           <h2>Software Engineer</h2>
-          <p class="role-meta">Enstack · 2025 to present · Hybrid, Metro Manila</p>
+          <p class="role-meta">Enstack · 2025 to Sept 2026 · Hybrid, Metro Manila</p>
         </div>
-        <span class="role-tag">Current</span>
+        <span class="role-tag">Most recent</span>
       </div>
       <p class="role-intro">
-        I work on the Angular frontend, the Django backend, and the operations scripts, and I ship to
-        two regions off one codebase. The product is a commerce platform for small merchants: an
-        offline-first merchant app, a public storefront, payments, and the internal admin tooling.
+        I worked on the Angular frontend, the Django backend and the scripts that kept operations
+        running, shipping to two countries from one codebase. The product is a shopping platform
+        for small merchants: an app that keeps working when the internet drops, a public storefront
+        for customers, payments, and the admin tools the company uses internally.
       </p>
 
       <p class="hl-label">Selected work <span>(click to open)</span></p>
