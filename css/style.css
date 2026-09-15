@@ -73,6 +73,26 @@ a  { color: inherit; text-decoration: none; }
 b, strong { font-weight: 650; }
 em { font-style: normal; color: var(--accent); }
 
+/* ---------- Prose ---------- */
+/* Body copy is justified. hyphens keeps the word spacing from opening up into
+   rivers on the narrower columns, so lang="en" on <html> has to stay. */
+.hero-lede,
+.side-gloss,
+.role-intro,
+.hl-body p:not(.hl-stack),
+.subrole li,
+.step p,
+.section-note,
+.contact-p,
+.sheet-body,
+.doc p,
+.doc li {
+  text-align: justify;
+  text-wrap: pretty;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 code {
   font-family: var(--mono);
   font-size: .86em;
