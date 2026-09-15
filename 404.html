@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Page Not Found</title>
-  <style>
-    body { 
-      font-family: 'Poppins', sans-serif; 
-      text-align: center; 
-      padding: 50px; 
-    }
-    h1 { font-size: 50px; }
-    a { color: #3498db; text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>404 | Zach Magistrado</title>
+<meta name="description" content="That page could not be found on Zach Magistrado's website. Head back to the homepage.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="404 | Zach Magistrado">
+<meta property="og:description" content="That page could not be found.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23cfc7b1'/%3E%3Ctext x='50' y='71' font-family='Inter,Arial' font-size='64' font-weight='700' text-anchor='middle' fill='%230a0a0b'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      document.documentElement.dataset.theme =
+        saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+  })();
+</script>
+<style>
+  .oops { min-height: 100svh; display: grid; place-items: center; text-align: center; position: relative; overflow: hidden; }
+  .oops .hero-grid { position: absolute; inset: 0; }
+  .oops-inner { position: relative; z-index: 1; padding: 0 24px; }
+  .oops h1 { font-size: clamp(5rem, 22vw, 13rem); letter-spacing: -.06em; line-height: .85; color: var(--accent); }
+  .oops p { margin: 18px auto 30px; max-width: 42ch; color: var(--muted); }
+</style>
 </head>
 <body>
-  <h1>404</h1>
-  <p>Oops! The page you're looking for doesn't exist.</p>
-  <p><a href="/">Return to Home</a></p>
+  <section class="oops">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="oops-inner">
+      <h1>404</h1>
+      <p>This page doesn't exist. Head back to the homepage.</p>
+      <a class="btn btn-primary" href="/">Back to the homepage</a>
+    </div>
+  </section>
 </body>
 </html>
