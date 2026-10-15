@@ -1,0 +1,5 @@
+# Private notes (evidence files). Never commit.
+notes/
+
+# macOS
+.DS_Store

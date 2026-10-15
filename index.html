@@ -3,707 +3,372 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 
 <title>Zach Magistrado | Software Engineer</title>
-<meta name="description" content="Zach Magistrado, software engineer. I fix the bugs that do not reproduce and the slowness nobody can pin down. Angular, Django, PostgreSQL, BigQuery.">
+<meta name="description" content="Zach Magistrado, software engineer in Metro Manila. I fix what only breaks sometimes: race conditions, sync bugs, slow pages. Angular, Django, AWS Lambda, BigQuery.">
 <meta property="og:title" content="Zach Magistrado | Software Engineer">
-<meta property="og:description" content="Software engineer. Performance work, sync correctness, internal tools and data pipelines.">
+<meta property="og:description" content="I fix what only breaks sometimes.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23cfc7b1'/%3E%3Ctext x='50' y='71' font-family='Inter,Arial' font-size='64' font-weight='700' text-anchor='middle' fill='%230a0a0b'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0a0b'/%3E%3Ctext x='50' y='66' font-family='Arial Narrow,Arial' font-size='46' font-weight='800' text-anchor='middle' fill='%23cfc7b1'%3Eo7%3C/text%3E%3C/svg%3E">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="./Assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./Assets/fonts/JetBrainsMono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./css/style.css">
-
-<script>
-  // Set theme before first paint so there is no flash.
-  (function () {
-    try {
-      var saved = localStorage.getItem('theme');
-      var system = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      document.documentElement.dataset.theme = saved || system;
-    } catch (e) {
-      document.documentElement.dataset.theme = 'dark';
-    }
-  })();
-</script>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="progress" id="progress" aria-hidden="true"></div>
 
-<!-- ───────────────────────── Nav ───────────────────────── -->
-<header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark" aria-hidden="true">Z</span>
-      <span class="brand-name">Zach Magistrado</span>
-    </a>
-
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#about">About</a>
-      <a href="#process">How I work</a>
-      <a href="#experience">Experience</a>
-      <a href="#work">Work</a>
-      <a href="#toolkit">Toolkit</a>
-      <a href="#background">Background</a>
-    </nav>
-
-    <div class="nav-tools">
-      <button class="kbd-hint" id="palette-open" aria-label="Open quick navigation">
-        <span>Jump to</span><kbd>⌘</kbd><kbd>K</kbd>
-      </button>
-      <button class="icon-btn" id="theme-toggle" aria-label="Switch color theme">
-        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
-      </button>
-      <a class="btn btn-sm btn-primary nav-cta" href="#contact">Contact</a>
-      <button class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="#about">About</a>
-    <a href="#process">How I work</a>
+<header class="bar wrap">
+  <a class="handle" href="#top">0xzso7</a>
+  <nav class="bar-links" aria-label="Sections">
     <a href="#experience">Experience</a>
-    <a href="#work">Work</a>
     <a href="#toolkit">Toolkit</a>
     <a href="#background">Background</a>
     <a href="#contact">Contact</a>
-  </div>
+  </nav>
 </header>
 
 <main id="main">
 
-<!-- ───────────────────────── Hero ───────────────────────── -->
-<section class="hero" id="home">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="rays">
-      <span class="ray wash-a"></span>
-      <span class="ray wash-b"></span>
-      <span class="ray r1"></span>
-      <span class="ray r2"></span>
-      <span class="ray r3"></span>
-      <span class="ray r4"></span>
-      <span class="ray r5"></span>
-      <span class="ray r6"></span>
-      <span class="ray r7"></span>
-      <span class="ray r8"></span>
-      <span class="ray r9"></span>
-      <span class="ray r10"></span>
-      <span class="ray core-soft"></span>
-      <span class="ray core-hot"></span>
-    </div>
-    <div class="hero-floor"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-grid"></div>
+<!-- ───────── Intro ───────── -->
+<section class="hero">
+  <!-- Faint 0xzso7 texture behind the intro, drawn on canvas by script.js. Decorative only.
+       data-text sets the sequence, data-glitch-rate the glitches per second at desktop size. -->
+  <div class="noise" id="noise" aria-hidden="true" data-text="0xzso7" data-glitch-rate="14"></div>
+
+  <div class="intro wrap">
+  <div class="intro-text">
+    <p class="mono kicker">Software engineer · Metro Manila · UTC+8</p>
+    <h1 class="name">Zach <span class="hl">Magistrado</span></h1>
+    <p class="lede">I fix what <span class="hl">only breaks sometimes</span>.</p>
+    <p class="mono stack">Angular · Django · PostgreSQL · AWS Lambda · BigQuery</p>
   </div>
 
-  <div class="wrap hero-inner">
-    <h1 class="hero-title">
-      <span class="mask"><span>Zach</span></span>
-      <span class="mask"><span>Magistrado</span></span>
-    </h1>
-
-    <p class="hero-lede">
-      I'm a software engineer in Metro Manila. I work on the problems that are hard to track down:
-      <em>bugs nobody can make happen twice</em>, and pages that are slow for no obvious reason. Most
-      recently I did that for a shopping platform used by small businesses in the Philippines
-      and Thailand.
-    </p>
-
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#experience">See what I've shipped</a>
-      <a class="btn btn-ghost" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
-    </div>
-
+  <!-- Web-sized copies of Assets/images/portrait.jpg (480px and 960px, WebP with JPEG fallback). -->
+  <figure class="stamp" id="portrait">
+    <picture>
+      <source type="image/webp" srcset="./Assets/images/portrait-480.webp 480w, ./Assets/images/portrait-960.webp 960w" sizes="(max-width: 640px) 42vw, 230px">
+      <img src="./Assets/images/portrait-480.jpg" srcset="./Assets/images/portrait-480.jpg 480w, ./Assets/images/portrait-960.jpg 960w" sizes="(max-width: 640px) 42vw, 230px"
+           alt="Zach Magistrado" width="480" height="600" fetchpriority="high" decoding="async">
+    </picture>
+    <span class="stamp-fallback" aria-hidden="true">ZM</span>
+  </figure>
   </div>
-
 </section>
 
-<!-- ───────────────────────── Stack ticker + numbers ───────────────────────── -->
-<section class="numbers" aria-label="Results, with links to the work behind each">
+<!-- ───────── The race ───────── -->
+<section class="race" aria-label="Two sync workers that don't know about each other">
+  <div class="wrap race-inner">
+    <p class="mono race-note">Two background jobs. Neither knows the other exists.</p>
+    <div class="lanes" aria-hidden="true">
+      <div class="lane lane-a"><span class="mono lane-label">↑ upload / 30s</span><span class="track"><i class="dot dot-a"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></i></span></div>
+      <div class="lane lane-b"><span class="mono lane-label">↓ download / 60s</span><span class="track"><i class="dot dot-b"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i></span></div>
+    </div>
+    <p class="mono race-note race-note-end">This is where my bugs live.</p>
+  </div>
+</section>
+
+<!-- ───────── Numbers ───────── -->
+<section class="numbers" aria-label="A few numbers">
   <div class="wrap numbers-grid">
-    <a class="metric" href="#hl-perf">
-      <span class="metric-v">85</span>
-      <span class="metric-l">Lighthouse speed score on a live storefront, up from 60</span>
-      <span class="metric-go">See how<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-    </a>
-    <a class="metric" href="#hl-query">
-      <span class="metric-v">1</span>
-      <span class="metric-l">Database call at checkout, down from one for every item in the cart</span>
-      <span class="metric-go">See how<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-    </a>
-    <a class="metric" href="#hl-regions">
-      <span class="metric-v">2</span>
-      <span class="metric-l">Countries running on the same codebase, the Philippines and Thailand</span>
-      <span class="metric-go">See how<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-    </a>
+    <div class="num" data-reveal><span class="num-v">179</span><span class="mono num-l">AWS Lambda functions audited across two regions</span></div>
+    <div class="num" data-reveal><span class="num-v">85</span><span class="mono num-l">Lighthouse score in lab tests, up from about 60</span></div>
+    <div class="num" data-reveal><span class="num-v">81</span><span class="mono num-l">Backend tests at 95.8% coverage on a feature I built</span></div>
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Angular</span><i>/</i><span>TypeScript</span><i>/</i><span>Python</span><i>/</i><span>Django</span><i>/</i><span>PostgreSQL</span><i>/</i><span>BigQuery</span><i>/</i><span>IndexedDB</span><i>/</i><span>AWS Lambda</span><i>/</i><span>Offline-first sync</span><i>/</i><span>Core Web Vitals</span><i>/</i><span>Datadog</span><i>/</i>
-    <span>Angular</span><i>/</i><span>TypeScript</span><i>/</i><span>Python</span><i>/</i><span>Django</span><i>/</i><span>PostgreSQL</span><i>/</i><span>BigQuery</span><i>/</i><span>IndexedDB</span><i>/</i><span>AWS Lambda</span><i>/</i><span>Offline-first sync</span><i>/</i><span>Core Web Vitals</span><i>/</i><span>Datadog</span><i>/</i>
+<!-- ───────── Experience ───────── -->
+<section class="section wrap" id="experience">
+  <div class="section-head">
+    <h2 class="h2">Experience</h2>
+    <p class="mono">What I did is numbered in hex.<br>Open a line for the details.</p>
   </div>
-</div>
 
-<!-- ───────────────────────── About ───────────────────────── -->
-<section class="section" id="about">
-  <div class="wrap">
-    <p class="section-label"><span>01</span> About</p>
-    <div class="about-grid">
-      <div class="about-lead">
-        <p>
-          I'm a software engineer based in Metro Manila, with a Computer Science degree from FEU
-          Alabang. I work on both sides of an application: the screens people use, which I build
-          in Angular, and the server and database behind them, which I build in Django and
-          PostgreSQL. I also write the Python scripts and BigQuery pipelines that turn everything
-          the system records into reports the business can read.
-        </p>
-        <p>
-          I usually get handed the bugs nobody else has been able to explain. A checkout that
-          freezes halfway through. A product that goes back to its old details right after someone
-          saves it. Two background processes quietly undoing each other's work. Most of my time on
-          these goes into reading logs and getting the bug to happen again on purpose. The fix
-          itself is often only a few lines.
-        </p>
-        <p>
-          I'm looking for a team that works on this kind of problem, where real people depend on
-          the software and it matters when it breaks.
-        </p>
-      </div>
-
-      <aside class="about-side">
-        <p class="side-label">Focus</p>
-        <ul class="side-list">
-          <li><span class="dot" aria-hidden="true"></span> Building the app and the server behind it</li>
-          <li><span class="dot" aria-hidden="true"></span> Making slow pages fast, and keeping data in sync</li>
-          <li><span class="dot" aria-hidden="true"></span> Internal tools, automation and reporting</li>
-        </ul>
-        <p class="side-label">Reachable at</p>
-        <a class="side-mail" href="mailto:magistradozach@gmail.com">magistradozach@gmail.com</a>
-
-        <p class="side-label side-label-gap">Online as</p>
-        <a class="side-handle" href="https://github.com/0xzso7" target="_blank" rel="noopener">0xzso7</a>
-        <p class="side-gloss"><code>0x</code> for hex, <code>zs</code> for Zach Stephan,
-          <code>o7</code> for the salute.</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── How I work ───────────────────────── -->
-<section class="section" id="process">
-  <div class="wrap">
-    <p class="section-label"><span>02</span> How I work</p>
-
-    <div class="steps">
-      <div class="step">
-        <span class="step-n">01</span>
-        <h3>Make the bug happen before I fix it</h3>
-        <p>Most of the bugs I get cannot be made to happen on command, which is what makes them
-          hard. For the duplicate inventory bug I slowed my browser to 3G speed and kept switching
-          tabs while saving, for days, until it finally happened. If you cannot make a bug appear,
-          you cannot prove you fixed it.</p>
-      </div>
-
-      <div class="step">
-        <span class="step-n">02</span>
-        <h3>Logs before theories</h3>
-        <p>Before I settle on what is causing a problem, I look at what the system actually
-          recorded. I read the logs in Datadog and add my own logging to the live code. That is how
-          the duplicate products turned out to be merchants pressing Save during the 30 seconds
-          when the app was syncing in the background. Nothing in the bug report pointed there.</p>
-      </div>
-
-      <div class="step">
-        <span class="step-n">03</span>
-        <h3>Measure the real thing</h3>
-        <p>I tested the storefront's speed on a real production build, not on the development
-          server (<code>ng serve</code>) running on my laptop. The development server skips the
-          caching that makes a live site fast, so the score it gives you is not the score your
-          users get. Tuning against that number wastes weeks.</p>
-      </div>
-
-      <div class="step">
-        <span class="step-n">04</span>
-        <h3>Say when the fix belongs elsewhere</h3>
-        <p>Once the storefront reached 85, the rest of the delay was coming from how the backend
-          fetched products, not from anything on the frontend. I said so and handed it to the right
-          person, rather than spend another week chasing points I could not win.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── Experience ───────────────────────── -->
-<section class="section" id="experience">
-  <div class="wrap">
-    <p class="section-label"><span>03</span> Experience</p>
-
-    <!-- Enstack -->
-    <article class="role">
-      <div class="role-head">
-        <div>
-          <h2>Software Engineer</h2>
-          <p class="role-meta">Enstack · 2025 to Sept 2026 · Hybrid, Metro Manila</p>
-        </div>
-        <span class="role-tag">Most recent</span>
-      </div>
-      <p class="role-intro">
-        I worked on the Angular frontend, the Django backend and the scripts that kept operations
-        running, shipping to two countries from one codebase. The product is a shopping platform
-        for small merchants: an app that keeps working when the internet drops, a public storefront
-        for customers, payments, and the admin tools the company uses internally.
-      </p>
-
-      <p class="hl-label">Selected work <span>(click to open)</span></p>
-
-      <div class="highlights">
-        <details class="hl" id="hl-perf" open>
-          <summary>
-            <span class="hl-n">01</span>
-            <span class="hl-title">Raised the storefront Lighthouse score from 60 to 85</span>
-            <span class="hl-metric">+25 pts</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>Problem.</b> Every merchant's public store loaded slowly and the score wouldn't move past the low 60s.</p>
-            <p><b>What I did.</b> Migrated the whole Angular app to lazy-loaded standalone routes, then code-split a
-              643&nbsp;KB checkout chunk by deferring the Google Maps loader and the components behind it.
-              Consolidated font loading into one request, moved images to WebP at their real display size,
-              set <code>fetchpriority="high"</code> on the LCP banner, and added long-term cache headers.
-              I tested with production builds instead of <code>ng serve</code>, since <code>ng serve</code>
-              doesn't apply real cache headers and the scores from it are misleading.</p>
-            <p><b>Result.</b> 60 to 85. Past that point the remaining bottleneck was product fetching on
-              the backend, not the frontend, so I said so instead of spending more time on the wrong layer.</p>
-            <p class="hl-stack"><span>Angular</span><span>Core Web Vitals</span><span>Code splitting</span><span>WebP</span><span>HTTP caching</span></p>
-          </div>
-        </details>
-
-        <details class="hl">
-          <summary>
-            <span class="hl-n">02</span>
-            <span class="hl-title">Fixed a race condition that duplicated merchants' product variants</span>
-            <span class="hl-metric">data integrity</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>Problem.</b> Merchants were ending up with duplicate product variants. It didn't happen every
-              time and I couldn't reproduce it at first.</p>
-            <p><b>What I did.</b> I added debugging to the add-product flow and found the window. If a merchant hit
-              Save at the same moment the 30-second background upload sync ran, both paths sent the same unsent
-              events, and there was no lock stopping that. I added an <code>is_sending</code> flag across the sync
-              services and switched the variant writes to a single <code>bulkAdd</code>.</p>
-            <p><b>Result.</b> No more duplicates, and product creation writes faster.</p>
-            <p class="hl-stack"><span>IndexedDB</span><span>Offline-first sync</span><span>Concurrency</span><span>PWA</span></p>
-          </div>
-        </details>
-
-        <details class="hl">
-          <summary>
-            <span class="hl-n">03</span>
-            <span class="hl-title">Stopped product edits from reverting after save</span>
-            <span class="hl-metric">merchant trust</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>Problem.</b> Merchants reported that their edits went back to the old values, and that new products
-              disappeared from the inventory list for a while.</p>
-            <p><b>What I did.</b> There are two background workers that don't know about each other. Download sync runs
-              every 60 seconds, upload sync every 30. If download ran first it overwrote the local changes with the
-              older server data. I made the download path check for pending unsent events on each item and skip the
-              overwrite if there are any.</p>
-            <p><b>Result.</b> Local changes stay until they're actually pushed. Shipped to production.</p>
-            <p class="hl-stack"><span>Sync workers</span><span>Race conditions</span><span>Datadog</span></p>
-          </div>
-        </details>
-
-        <details class="hl" id="hl-query">
-          <summary>
-            <span class="hl-n">04</span>
-            <span class="hl-title">Turned an N+1 query in checkout into one batched lookup</span>
-            <span class="hl-metric">N+1 → O(1)</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>Problem.</b> Completing an order could hang for minutes. Merchants hit this on every sale.</p>
-            <p><b>What I did.</b> I profiled the shipping options validation and found product variants being fetched
-              once per line item. I batched them into one query and used a dictionary lookup.</p>
-            <p><b>Result.</b> Database calls went from one per line item to one, which cut order completion time.</p>
-            <p class="hl-stack"><span>Python</span><span>Django ORM</span><span>PostgreSQL</span><span>Profiling</span></p>
-          </div>
-        </details>
-
-        <details class="hl">
-          <summary>
-            <span class="hl-n">05</span>
-            <span class="hl-title">Made the signup to-do list load right away instead of 30 seconds late</span>
-            <span class="hl-metric">PH + TH</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>Problem.</b> New merchants signed up and got an empty onboarding checklist, which is the first
-              screen they see in the product.</p>
-            <p><b>What I did.</b> The list was built by a synchronous loop that waited on the 30-second background sync
-              worker. I parallelized it. That surfaced two more issues, so I fixed those too: completed steps were
-              flashing in on slow connections, so the list now waits until the merchant data is actually synced
-              before it builds, and the skeleton loader wasn't working, so I fixed that. Switching accounts now
-              clears the old data as well.</p>
-            <p><b>Result.</b> The checklist shows up right away. Shipped for both PH and TH.</p>
-            <p class="hl-stack"><span>Angular</span><span>Async orchestration</span><span>Perceived performance</span></p>
-          </div>
-        </details>
-
-        <details class="hl" id="hl-regions">
-          <summary>
-            <span class="hl-n">06</span>
-            <span class="hl-title">Moved PH and TH production data into BigQuery</span>
-            <span class="hl-metric">data engineering</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>Problem.</b> Reporting for both regions ran off queries against the production databases, and
-              Philippine and Thailand data lived in separate places.</p>
-            <p><b>What I did.</b> Set up the PH and TH data in BigQuery so the reporting and analytics side reads
-              from a warehouse instead of hitting production directly, with both regions in one place.</p>
-            <p><b>Result.</b> Analytics queries no longer compete with live merchant traffic, and PH and TH numbers
-              can be looked at side by side.</p>
-            <p class="hl-stack"><span>BigQuery</span><span>Python</span><span>SQL</span><span>Data pipelines</span></p>
-          </div>
-        </details>
-
-        <details class="hl">
-          <summary>
-            <span class="hl-n">07</span>
-            <span class="hl-title">Automated the Thailand reports that were being pulled by hand</span>
-            <span class="hl-metric">daily · 4-hourly</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>What I did.</b> Wrote and deployed Python export jobs that refresh the TH monitoring sheets from
-              the production database. Core reports every morning, advanced onboarding merchants every four hours,
-              and a daily orders pull, all running on cron. I matched the database connection to how the other
-              operations scripts do it, wrote the documentation for the dev manual, and moved the hardcoded service
-              account credentials into a .env file.</p>
-            <p><b>Result.</b> Nobody has to pull these by hand anymore.</p>
-            <p class="hl-stack"><span>Python</span><span>cron</span><span>Google Sheets API</span><span>Secrets hygiene</span></p>
-          </div>
-        </details>
-
-        <details class="hl">
-          <summary>
-            <span class="hl-n">08</span>
-            <span class="hl-title">Added region-aware ShopeePay onboarding to Superadmin</span>
-            <span class="hl-metric">full stack</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="hl-body">
-            <p><b>What I did.</b> Thailand needed a payment setup the Philippine flow didn't have. I added the
-              region-specific MID and SID fields to the Superadmin frontend and the merchant extras service,
-              removed the options that don't apply to TH, and added an admin audit log so configuration changes
-              are traceable. Tested the whole flow before handing it over.</p>
-            <p class="hl-stack"><span>Angular</span><span>Django</span><span>Audit logging</span><span>Payments</span></p>
-          </div>
-        </details>
-      </div>
-    </article>
-
-    <!-- Lambert Williams -->
-    <article class="role">
-      <div class="role-head">
-        <div>
-          <h2>WordPress &amp; Web Developer</h2>
-          <p class="role-meta">Lambert Williams Logistics · Internship, 7 months · On-site</p>
-        </div>
-      </div>
-
-      <div class="subrole">
-        <h3>WordPress work <span>Apr - Jul 2025</span></h3>
-        <ul>
-          <li>Built and maintained WordPress sites, focusing on SEO, responsive layout and page performance.</li>
-          <li>Helped ship a Progressive Web App on a serverless stack using AWS Lambda, API Gateway, DynamoDB and IAM.</li>
-          <li>Theme customization, Elementor page building, plugin work and web analytics.</li>
-        </ul>
-      </div>
-
-      <div class="subrole">
-        <h3>Web and internal systems <span>Jan - Apr 2025</span></h3>
-        <ul>
-          <li>Worked on an HRIS for applicant tracking and job offer management, front and back end.</li>
-          <li>Database integration and system optimization.</li>
-          <li>IT support and troubleshooting, including hardware and network setup.</li>
-        </ul>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ───────────────────────── Work ───────────────────────── -->
-<section class="section" id="work">
-  <div class="wrap">
-    <p class="section-label"><span>04</span> Projects</p>
-    <div class="work-head">
-      <p class="section-note">Personal and school projects. Click one for details.</p>
-      <div class="carousel-nav">
-        <button class="c-btn" type="button" id="work-prev" aria-label="Previous project" aria-controls="work-track">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-        </button>
-        <button class="c-btn" type="button" id="work-next" aria-label="Next project" aria-controls="work-track">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="work-track" id="work-track" role="region" aria-label="Projects, scrollable" tabindex="0">
-
-      <button class="card" type="button"
-        data-title="Simpu: Piano Learning App"
-        data-repo="https://github.com/0xzso7/Simpu-Piano-Learning-App/tree/Test"
-        data-stack="JavaScript · Web Audio API · Pitch detection"
-        data-body="A browser app that listens to a piano through the microphone and tells you which note you just played. It runs the live audio through a pitch detection algorithm, maps the dominant frequency to a note, and checks it against the note you were supposed to hit. Most of the work went into the signal processing, since real rooms are noisy and harmonics throw off a simple peak detector.">
-        <span class="card-n">01</span>
-        <span class="card-title">Simpu</span>
-        <span class="card-sub">Real-time pitch detection for piano practice</span>
-        <span class="card-stack"><span>JavaScript</span><span>Web Audio API</span><span>Pitch detection</span></span>
-        <span class="card-more">Details<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-      </button>
-
-      <button class="card" type="button"
-        data-title="Touristy: AR Tourist Card Viewer"
-        data-repo="https://github.com/0xzso7/Touristy-AR-Tourist-Card-Viewer"
-        data-stack="Unity · Vuforia · C# · 3D assets"
-        data-body="An augmented reality mobile app built in Unity with Vuforia. You point the camera at a printed card and a 3D model of the landmark shows up on top of it, like the Eiffel Tower. Most of the work was image target tracking, keeping the model anchored when the card moves, and cutting the model size down so it runs on a phone.">
-        <span class="card-n">02</span>
-        <span class="card-title">Touristy</span>
-        <span class="card-sub">Marker-based AR that puts landmarks on a printed card</span>
-        <span class="card-stack"><span>Unity</span><span>Vuforia</span><span>C#</span><span>3D assets</span></span>
-        <span class="card-more">Details<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-      </button>
-
-      <button class="card" type="button"
-        data-title="Weather App"
-        data-repo="https://github.com/0xzso7/Weather_App"
-        data-stack="Python · Tkinter · OpenWeatherMap API"
-        data-body="A small desktop app built with Tkinter. You type in a city and it shows the current temperature and conditions from the OpenWeatherMap API. Simple on the surface, but it was the first time I had to handle requests that fail, cities that don't exist, and a response format I don't control.">
-        <span class="card-n">03</span>
-        <span class="card-title">Weather App</span>
-        <span class="card-sub">Current conditions for any city, on the desktop</span>
-        <span class="card-stack"><span>Python</span><span>Tkinter</span><span>OpenWeatherMap API</span></span>
-        <span class="card-more">Details<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-      </button>
-
-      <button class="card" type="button"
-        data-title="CalQ: Calculator"
-        data-repo="https://github.com/0xzso7/CalQ-Simple_JavaScript_Calculator"
-        data-stack="HTML · CSS · JavaScript"
-        data-body="A calculator built with plain HTML, CSS and JavaScript. Responsive layout, keyboard input, and handling for chained operations, repeated equals and decimals. One of the first things I built.">
-        <span class="card-n">04</span>
-        <span class="card-title">CalQ</span>
-        <span class="card-sub">Arithmetic, keyboard input and the awkward edge cases</span>
-        <span class="card-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></span>
-        <span class="card-more">Details<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
-      </button>
-
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── Toolkit ───────────────────────── -->
-<section class="section" id="toolkit">
-  <div class="wrap">
-    <p class="section-label"><span>05</span> Toolkit</p>
-
-    <div class="tool-grid">
-      <div class="tool">
-        <h3>Languages</h3>
-        <p>TypeScript · JavaScript · Python · Java · C# · C++ · PHP · Dart · SQL</p>
-      </div>
-      <div class="tool">
-        <h3>Frontend</h3>
-        <p>Angular · HTML and CSS · Ext JS · offline-first PWAs · IndexedDB · Core Web Vitals · WordPress and Elementor</p>
-      </div>
-      <div class="tool">
-        <h3>Backend and data</h3>
-        <p>Django · REST APIs · PostgreSQL · BigQuery · query profiling · MySQL</p>
-      </div>
-      <div class="tool">
-        <h3>Cloud and operations</h3>
-        <p>AWS Lambda · API Gateway · DynamoDB · IAM · cron jobs · Datadog · Git</p>
-      </div>
-      <div class="tool">
-        <h3>Mobile</h3>
-        <p>Flutter · Android Studio · Unity and Vuforia</p>
-      </div>
-      <div class="tool">
-        <h3>Data and automation</h3>
-        <p>BigQuery pipelines · Python export scripts · Google Sheets API · cron and launch agents</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── Background ───────────────────────── -->
-<section class="section" id="background">
-  <div class="wrap">
-    <p class="section-label"><span>06</span> Background</p>
-
-    <div class="bg-grid">
+  <!-- Enstack -->
+  <article class="role" data-reveal>
+    <div class="role-head">
       <div>
-        <h3 class="bg-h">Education</h3>
-        <ul class="bg-list">
-          <li>
-            <span class="bg-when">2021 to 2025</span>
-            <b>BS Computer Science, Software Engineering</b>
-            <span>FEU Alabang · Cum Laude</span>
-          </li>
-          <li>
-            <span class="bg-when">2019 to 2021</span>
-            <b>Senior High School, STEM</b>
-            <span>Universal College of Parañaque · With High Honors</span>
-          </li>
-        </ul>
+        <h3 class="role-title">Software Engineer</h3>
+        <p class="role-org">Enstack</p>
       </div>
+      <p class="role-date mono">2025 – Now</p>
+    </div>
+    <p class="role-desc">Angular, Django, AWS Lambda and BigQuery for a commerce platform used by small to medium merchants in
+      the Philippines and Thailand.</p>
 
+    <div class="did">
+      <details class="entry">
+        <summary><span class="hex">0x01</span><span class="entry-t">Offline sync race conditions</span><span class="entry-tag mono">data integrity</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>A manual save could land during the 30-second background sync and send the same changes twice, and a
+          download could overwrite edits not yet sent. Added a send lock, atomic local writes, and a pending-change
+          check before any overwrite.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x02</span><span class="entry-t">Automatic e-wallet refunds</span><span class="entry-tag mono">payments</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Added GCash to automatic refunds, a Lambda webhook that tracks refund status, and a Celery task that
+          retries PayMaya partial refunds the next day. Also fixed a race that put cancelled orders back to
+          "for pickup".</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x03</span><span class="entry-t">Lambda audit and shared layer</span><span class="entry-tag mono">179 functions</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Mapped every function across two regions to its code and usage, then built a shared dependency layer,
+          built in Docker and versioned through SSM, and moved the first function onto it.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x04</span><span class="entry-t">Storefront speed</span><span class="entry-tag mono">~60 → 85</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Lazy routes, long-term cache headers, one font request, a prioritised banner image and less layout
+          shift, all measured on production builds. 85 in lab tests; getting past 90 needed backend changes.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x05</span><span class="entry-t">KYB review queue</span><span class="entry-tag mono">81 tests</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Admin API and Angular pages for reviewing merchant verification submissions: filters, document marks,
+          and approve, reject or needs-info actions. 81 backend tests at 95.8% coverage, plus 19 frontend.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x06</span><span class="entry-t">BigQuery ETL and reports</span><span class="entry-tag mono">ETL</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>A Lambda that loads denormalized user and order tables into BigQuery with full and incremental syncs,
+          plus scheduled jobs that refresh the operations report sheets.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x07</span><span class="entry-t">Production shipping migrations</span><span class="entry-tag mono">PostgreSQL</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Courier priority, whitelist, serviceability and rate updates, written as SQL scripts with backups and
+          temp-table dry runs, and checked for duplicates afterwards.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x08</span><span class="entry-t">Checkout N+1 query</span><span class="entry-tag mono">N → 1</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Shipping validation fetched product variants once per cart item. It now runs one batched query and a
+          dictionary lookup.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x09</span><span class="entry-t">Duplicate storefront categories</span><span class="entry-tag mono">data fix</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>New devices created a second copy of each category because the app matched them by a local ID. Saving
+          now reuses a category with the same name, and the storefront merges any duplicates, with no data
+          migration needed.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x0A</span><span class="entry-t">Signup checklist that loads right away</span><span class="entry-tag mono">PH + TH</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>The onboarding to-do list was built one step at a time behind the background sync. It now loads in
+          parallel, waits for synced data so finished steps don't flash in, and clears old data on account
+          switch.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x0B</span><span class="entry-t">ShopeePay onboarding for Thailand</span><span class="entry-tag mono">full stack</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Region-specific merchant fields in the admin dashboard, an admin audit log, and CSV bulk upload that
+          validates each row.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x0C</span><span class="entry-t">Shared dialogs and toasts</span><span class="entry-tag mono">Angular</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Picked up a teammate's work moving the Thailand merchant app's dialogs, banners and snackbars onto one
+          shared dialog and one toast service.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x0D</span><span class="entry-t">Nginx route documentation</span><span class="entry-tag mono">docs</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Documented every Nginx route configuration so the next person doesn't have to reverse-engineer them.</p>
+      </details>
+    </div>
+  </article>
+
+  <!-- Lambert Williams -->
+  <article class="role" data-reveal>
+    <div class="role-head">
       <div>
-        <h3 class="bg-h">Certifications</h3>
-        <ul class="bg-list bg-list-plain">
-          <li><b>IT Specialist, Python</b></li>
-          <li><b>IT Specialist, Java</b></li>
-          <li><b>CCNA: Introduction to Networks</b></li>
-          <li><b>CCNA: Switching, Routing &amp; Wireless Essentials</b></li>
-          <li><b>TOPCIT Competency Level 3</b><span>11th assessment</span></li>
-          <li><b>19th IT Olympics</b><span>Android development, productivity category</span></li>
-        </ul>
+        <h3 class="role-title">WordPress &amp; Web Developer Intern</h3>
+        <p class="role-org">Lambert Williams Logistics</p>
       </div>
+      <p class="role-date mono">Jan – Jul 2025</p>
+    </div>
+    <p class="role-desc">Seven months on the company's websites and internal systems.</p>
+
+    <div class="did">
+      <details class="entry">
+        <summary><span class="hex">0x0E</span><span class="entry-t">WordPress sites</span><span class="entry-tag mono">SEO · speed</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Built and maintained WordPress sites with a focus on SEO, responsive layout and page performance.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x0F</span><span class="entry-t">Themes, Elementor and plugins</span><span class="entry-tag mono">WordPress</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Theme customization, Elementor page building, plugin work, web analytics and marketing automation.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x10</span><span class="entry-t">Serverless PWA</span><span class="entry-tag mono">AWS</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Helped build and deploy a Progressive Web App on AWS Lambda, API Gateway, DynamoDB and IAM.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x11</span><span class="entry-t">HRIS for applicant tracking</span><span class="entry-tag mono">full stack</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Worked on an HR system for applicant tracking and job offer management, on both the front and back
+          end.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x12</span><span class="entry-t">Database work</span><span class="entry-tag mono">schemas</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Designed and updated database schemas, tightened data validation, and improved system
+          performance.</p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x13</span><span class="entry-t">IT support and networking</span><span class="entry-tag mono">hardware · LAN</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>Technical support and troubleshooting, LAN setup, and maintaining desktop and network systems.</p>
+      </details>
+    </div>
+  </article>
+
+  <!-- Personal projects -->
+  <article class="role role-last" data-reveal id="projects">
+    <div class="role-head">
+      <div>
+        <h3 class="role-title">Personal projects</h3>
+        <p class="role-org">Personal and school projects</p>
+      </div>
+    </div>
+
+    <div class="did">
+      <details class="entry">
+        <summary><span class="hex">0x14</span><span class="entry-t">Simpu, a piano learning app</span><span class="entry-tag mono">Web Audio API</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>A browser app that listens to a piano through the microphone and tells you which note you played. It
+          runs the live audio through pitch detection and checks it against the note you were meant to hit.
+          <a class="gh" href="https://github.com/0xzso7/Simpu-Piano-Learning-App/tree/Test" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x15</span><span class="entry-t">Touristy, an AR card viewer</span><span class="entry-tag mono">Unity · Vuforia</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>A mobile AR app: point the camera at a printed card and a 3D model of the landmark appears on top of
+          it, anchored as the card moves.
+          <a class="gh" href="https://github.com/0xzso7/Touristy-AR-Tourist-Card-Viewer" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x16</span><span class="entry-t">Weather app</span><span class="entry-tag mono">Python · Tkinter</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>A desktop app that shows the current temperature and conditions for any city from the OpenWeatherMap
+          API, and handles failed requests and unknown cities.
+          <a class="gh" href="https://github.com/0xzso7/Weather_App" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+      </details>
+      <details class="entry">
+        <summary><span class="hex">0x17</span><span class="entry-t">CalQ, a calculator</span><span class="entry-tag mono">HTML · CSS · JS</span><span class="toggle" aria-hidden="true"></span></summary>
+        <p>A responsive calculator in plain JavaScript with keyboard input, chained operations, repeated equals and
+          decimals.
+          <a class="gh" href="https://github.com/0xzso7/CalQ-Simple_JavaScript_Calculator" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+      </details>
+    </div>
+  </article>
+</section>
+
+<!-- ───────── Toolkit ───────── -->
+<section class="section wrap" id="toolkit">
+  <div class="section-head">
+    <h2 class="h2">Toolkit</h2>
+    <p class="mono">Everything I've used<br>at work and on my own.</p>
+  </div>
+
+  <div class="tools">
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Languages</h3>
+      <ul class="chips"><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>SQL</li><li>Java</li><li>C#</li><li>C++</li><li>PHP</li><li>Dart</li></ul>
+    </div>
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Frontend</h3>
+      <ul class="chips"><li>Angular</li><li>HTML</li><li>CSS</li><li>Ext JS</li><li>Offline-first PWAs</li><li>IndexedDB</li><li>Core Web Vitals</li><li>WordPress</li><li>Elementor</li></ul>
+    </div>
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Backend</h3>
+      <ul class="chips"><li>Django</li><li>REST APIs</li><li>GraphQL</li><li>Celery</li><li>Payment webhooks</li></ul>
+    </div>
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Data</h3>
+      <ul class="chips"><li>PostgreSQL</li><li>MySQL</li><li>Oracle SQL</li><li>BigQuery</li><li>DynamoDB</li><li>pandas</li><li>Google Sheets API</li><li>XAMPP</li><li>Navicat</li><li>Laragon</li></ul>
+    </div>
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Cloud &amp; ops</h3>
+      <ul class="chips"><li>AWS Lambda</li><li>Lambda layers</li><li>API Gateway</li><li>IAM</li><li>S3</li><li>SSM Parameter Store</li><li>AWS CLI</li><li>Docker</li><li>Serverless (osls)</li><li>Nginx</li><li>cron</li><li>Datadog</li><li>Git &amp; GitHub</li></ul>
+    </div>
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Mobile &amp; AR</h3>
+      <ul class="chips"><li>Flutter</li><li>Android Studio</li><li>Unity</li><li>Vuforia</li></ul>
+    </div>
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Design &amp; workflow</h3>
+      <ul class="chips"><li>Figma</li><li>Jira</li><li>Obsidian</li><li>ClickUp</li><li>Canva</li><li>Photoshop</li><li>Google Workspace</li><li>Microsoft Office</li></ul>
+    </div>
+    <div class="tool-group" data-reveal>
+      <h3 class="mono tool-h">Networking</h3>
+      <ul class="chips"><li>LAN / WAN setup</li><li>Network troubleshooting</li><li>Hardware</li></ul>
     </div>
   </div>
 </section>
 
-<!-- ───────────────────────── Contact ───────────────────────── -->
-<section class="section contact" id="contact">
-  <div class="wrap">
-    <p class="section-label"><span>07</span> Contact</p>
+<!-- ───────── Background ───────── -->
+<section class="section wrap" id="background">
+  <div class="section-head">
+    <h2 class="h2">Background</h2>
+    <p class="mono">School, certifications<br>and communities.</p>
+  </div>
 
-    <div class="contact-grid">
-      <div>
-        <h2 class="contact-h">Get in touch</h2>
-        <p class="contact-p">
-          If you want to talk about a role or a project, email is the fastest way to reach me.
-          I'm also on LinkedIn and GitHub.
-        </p>
-
-        <a class="mail-big" href="mailto:magistradozach@gmail.com">
-          magistradozach@gmail.com
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-        </a>
-
-        <p class="contact-loc">Metro Manila, Philippines &middot; UTC+8</p>
-
-        <div class="socials">
-          <a href="https://github.com/0xzso7" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z" fill="currentColor" stroke="none"/></svg>
-            <span>GitHub</span>
-          </a>
-          <a href="https://www.linkedin.com/in/zsmagistrado/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.93-3.06-1.93 0-2.23 1.45-2.23 2.96V21h-4z" fill="currentColor" stroke="none"/></svg>
-            <span>LinkedIn</span>
-          </a>
-          <a href="https://www.facebook.com/magistrado.zach.25/" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.29-.04-1.29-.13-2.45-.13-2.42 0-4.08 1.48-4.08 4.2v2.23H7.45V13h2.72v8z" fill="currentColor" stroke="none"/></svg>
-            <span>Facebook</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="form-wrap">
-        <form class="form" id="contact-form" action="https://formspree.io/f/xkgbzekq" method="POST">
-          <input type="hidden" name="_subject" value="New message from personal website">
-
-          <div class="field" id="wrap-name">
-            <label for="f-name">Name</label>
-            <input id="f-name" type="text" name="name" placeholder="Your name" required
-                   autocomplete="name" aria-describedby="err-name">
-            <span class="field-error" id="err-name"></span>
-          </div>
-
-          <div class="field" id="wrap-email">
-            <label for="f-email">Email</label>
-            <input id="f-email" type="email" name="email" placeholder="you@example.com" required
-                   autocomplete="email" inputmode="email" aria-describedby="err-email">
-            <span class="field-error" id="err-email"></span>
-          </div>
-
-          <div class="field" id="wrap-msg">
-            <label for="f-msg">Message</label>
-            <textarea id="f-msg" name="message" rows="4" placeholder="What would you like to talk about?"
-                      required aria-describedby="err-msg"></textarea>
-            <span class="field-error" id="err-msg"></span>
-          </div>
-
-          <button class="btn btn-primary btn-block" type="submit" id="form-submit">Send message</button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        </form>
-
-        <div class="form-done" id="form-done" hidden>
-          <span class="form-done-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7.5"/></svg>
-          </span>
-          <h3>Message sent</h3>
-          <p>Thanks for reaching out. I'll reply to the email address you gave as soon as I can.</p>
-          <button class="btn btn-ghost" type="button" id="form-again">Send another message</button>
-        </div>
-      </div>
+  <div class="bg-grid">
+    <div data-reveal>
+      <h3 class="mono tool-h">Education</h3>
+      <ul class="facts">
+        <li><span class="fact-t">BS Computer Science, Software Engineering</span><span class="fact-s">FEU Alabang · Cum Laude · Top Performing Student, all four years</span><span class="fact-d mono">2021 – 2025</span></li>
+        <li><span class="fact-t">Senior High School, STEM</span><span class="fact-s">Universal College of Parañaque · With High Honors</span><span class="fact-d mono">2019 – 2021</span></li>
+      </ul>
+    </div>
+    <div data-reveal>
+      <h3 class="mono tool-h">Certifications</h3>
+      <ul class="facts">
+        <li><span class="fact-t">IT Specialist: Python</span></li>
+        <li><span class="fact-t">IT Specialist: Java</span></li>
+        <li><span class="fact-t">CCNA: Introduction to Networks</span></li>
+        <li><span class="fact-t">CCNA: Switching, Routing &amp; Wireless Essentials</span></li>
+        <li><span class="fact-t">TOPCIT Competency Level 3</span><span class="fact-s">11th assessment</span></li>
+        <li><span class="fact-t">19th IT Olympics</span><span class="fact-s">Android development, productivity category</span></li>
+      </ul>
+    </div>
+    <div data-reveal>
+      <h3 class="mono tool-h">Communities</h3>
+      <ul class="facts">
+        <li><span class="fact-t">Google Developer Student Clubs, FEU Alabang</span><span class="fact-s">Member</span><span class="fact-d mono">2021 – 2025</span></li>
+        <li><span class="fact-t">ACM, FEU Alabang Chapter</span><span class="fact-s">Member</span><span class="fact-d mono">2021 – 2025</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <p>© <span id="year">2026</span> Zach Stephan Magistrado
-      <a class="footer-handle" href="https://github.com/0xzso7" target="_blank" rel="noopener">0xzso7</a>
-    </p>
-    <nav class="footer-links" aria-label="Legal">
-      <a href="./privacy.html">Privacy</a>
-      <a href="./terms.html">Terms</a>
-      <a href="mailto:magistradozach@gmail.com">Email</a>
-      <a href="https://github.com/0xzso7" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-    <a class="to-top" href="#top">Back to top <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
+<!-- ───────── Contact ───────── -->
+<footer class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-main">
+      <p class="mono contact-kicker"><span class="hex-b">0x18</span> Contact</p>
+      <h2 class="contact-h">Send me your <span class="hl-b">weirdest bug.</span></h2>
+      <p class="contact-p">A role, a project, or a bug that only shows up sometimes. Email is the fastest way to
+        reach me.</p>
+    </div>
+
+    <ul class="contact-list">
+      <li><a href="mailto:magistradozach@gmail.com">
+        <span class="mono cl-k">Email</span><span class="cl-v">magistradozach@gmail.com</span><span class="cl-go" aria-hidden="true">↗</span>
+      </a></li>
+      <li><a href="https://www.linkedin.com/in/zsmagistrado/" target="_blank" rel="noopener">
+        <span class="mono cl-k">LinkedIn</span><span class="cl-v">in/zsmagistrado</span><span class="cl-go" aria-hidden="true">↗</span>
+      </a></li>
+      <li><a href="https://github.com/0xzso7" target="_blank" rel="noopener">
+        <span class="mono cl-k">GitHub</span><span class="cl-v">0xzso7</span><span class="cl-go" aria-hidden="true">↗</span>
+      </a></li>
+      <li class="cl-static">
+        <span class="mono cl-k">Based in</span><span class="cl-v">Metro Manila, Philippines</span><span class="mono cl-note">UTC+8</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="wrap">
+    <div class="contact-bar mono">
+      <a href="#top">0xzso7</a>
+      <span class="contact-links">
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="#top">Back to top ↑</a>
+      </span>
+      <span>© <span id="year">2026</span> · <span class="hl-b">o7</span></span>
+    </div>
   </div>
 </footer>
-
-<!-- ───────────────────────── Project dialog ───────────────────────── -->
-<dialog class="sheet" id="project-sheet" aria-labelledby="sheet-title">
-  <button class="sheet-close" id="sheet-close" aria-label="Close">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-  <div class="sheet-main">
-    <h2 id="sheet-title"></h2>
-    <p class="sheet-stack" id="sheet-stack"></p>
-    <p class="sheet-body" id="sheet-body"></p>
-    <a class="btn btn-primary" id="sheet-repo" target="_blank" rel="noopener" hidden>View on GitHub</a>
-  </div>
-</dialog>
-
-<!-- ───────────────────────── Command palette ───────────────────────── -->
-<dialog class="palette" id="palette" aria-label="Quick navigation">
-  <div class="palette-input">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-    <input id="palette-q" type="text" placeholder="Jump to a section…" autocomplete="off" spellcheck="false">
-    <kbd>esc</kbd>
-  </div>
-  <ul class="palette-list" id="palette-list"></ul>
-</dialog>
 
 <script src="./js/script.js" defer></script>
 </body>

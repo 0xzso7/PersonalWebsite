@@ -3,46 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <title>Terms of Use | Zach Magistrado</title>
 <meta name="description" content="The terms for using Zach Magistrado's personal portfolio site.">
 <meta property="og:title" content="Terms of Use | Zach Magistrado">
 <meta property="og:description" content="The terms for using Zach Magistrado's personal portfolio site.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2716%27 fill=%27%23cfc7b1%27/%3E%3Ctext x=%2750%27 y=%2771%27 font-family=%27Inter,Arial%27 font-size=%2764%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%230a0a0b%27%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0a0b'/%3E%3Ctext x='50' y='66' font-family='Arial Narrow,Arial' font-size='46' font-weight='800' text-anchor='middle' fill='%23cfc7b1'%3Eo7%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="./Assets/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./Assets/fonts/JetBrainsMono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./css/style.css">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem("theme");
-      document.documentElement.dataset.theme =
-        saved || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    } catch (e) { document.documentElement.dataset.theme = "dark"; }
-  })();
-</script>
 </head>
-<body id="top">
+
+<body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="./index.html">
-      <span class="brand-mark" aria-hidden="true">Z</span>
-      <span class="brand-name">Zach Magistrado</span>
-    </a>
-    <div class="nav-tools">
-      <a class="btn btn-sm btn-ghost" href="./index.html">Back to site</a>
-    </div>
-  </div>
+<header class="page-bar">
+  <nav class="bar wrap" aria-label="Site">
+    <a class="handle" href="./index.html">0xzso7</a>
+    <span class="bar-links"><a href="./index.html">Back to site</a></span>
+  </nav>
 </header>
 
 <main id="main" class="doc">
   <div class="wrap">
-    <p class="doc-kicker">Legal</p>
+    <p class="tag">Legal</p>
     <h1>Terms of Use</h1>
-    <p class="doc-updated">Last updated 4 September 2026</p>
+    <p class="doc-updated">Last updated 15 October 2026</p>
 
     <p>This is a personal portfolio site. By using it you agree to the following, which is short
       on purpose.</p>
@@ -64,13 +50,8 @@
       party names and trademarks mentioned belong to their respective owners.</p>
 
     <h2>Links out</h2>
-    <p>This site links to places I do not control, such as GitHub, LinkedIn and Facebook. I am not
+    <p>This site links to places I do not control, such as GitHub and LinkedIn. I am not
       responsible for what is on them or for their terms and privacy practices.</p>
-
-    <h2>Using the contact form</h2>
-    <p>Please use it for genuine enquiries. Do not use it to send spam, malicious content, or anything
-      unlawful. I may ignore or delete messages that do. Do not send me confidential or sensitive
-      personal information through it.</p>
 
     <h2>Liability</h2>
     <p>To the extent the law allows, I am not liable for any loss arising from your use of this site
@@ -85,19 +66,21 @@
   </div>
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <p>© <span id="year">2026</span> Zach Stephan Magistrado</p>
-    <nav class="footer-links" aria-label="Legal">
-      <a href="./index.html">Home</a>
-      <a href="./privacy.html">Privacy</a>
-      <a href="./terms.html">Terms</a>
-      <a href="mailto:magistradozach@gmail.com">Email</a>
-    </nav>
+<footer class="page-foot">
+  <div class="wrap">
+    <div class="contact-bar mono">
+      <a class="keep" href="./index.html">0xzso7</a>
+      <span class="contact-links">
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="mailto:magistradozach@gmail.com">Email</a>
+      </span>
+      <span>© <span id="year">2026</span> · <span class="keep">o7</span></span>
+    </div>
   </div>
 </footer>
 <script>
-  var y = document.getElementById("year");
+  var y = document.getElementById('year');
   if (y) y.textContent = String(new Date().getFullYear());
 </script>
 </body>

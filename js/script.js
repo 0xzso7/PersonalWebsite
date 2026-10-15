@@ -1,428 +1,296 @@
 (function () {
   'use strict';
 
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var $  = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-
-  /* ---------- Theme ---------- */
-  var toggle = $('#theme-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-      document.documentElement.dataset.theme = next;
-      try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
-    });
-  }
-
-  /* ---------- Nav: sticky state + scroll progress ---------- */
-  var nav = $('#nav');
-  var bar = $('#progress');
-  var ticking = false;
-
-  function onScroll() {
-    var y = window.scrollY;
-    if (nav) nav.classList.toggle('stuck', y > 12);
-    if (bar) {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
-    }
-    ticking = false;
-  }
-  window.addEventListener('scroll', function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
-  }, { passive: true });
-  onScroll();
-
-  /* ---------- Mobile menu ---------- */
-  var menuBtn = $('#menu-btn');
-  var menu = $('#mobile-menu');
-
-  function setMenu(open) {
-    if (!menu || !menuBtn) return;
-    menu.hidden = !open;
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  }
-  if (menuBtn && menu) {
-    menuBtn.addEventListener('click', function () { setMenu(menu.hidden); });
-    $$('a', menu).forEach(function (a) {
-      a.addEventListener('click', function () { setMenu(false); });
-    });
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 1000) setMenu(false);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); }
-    });
-  }
-
-  /* ---------- Active section in nav ---------- */
-  var navLinks = $$('.nav-links a');
-  var sections = $$('main section[id]');
-  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var id = entry.target.id;
-        navLinks.forEach(function (a) {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function (s) { spy.observe(s); });
-  }
-
-  /* ---------- Project sheet ---------- */
-  var sheet = $('#project-sheet');
-  if (sheet) {
-    var sTitle = $('#sheet-title');
-    var sStack = $('#sheet-stack');
-    var sBody  = $('#sheet-body');
-    var sRepo  = $('#sheet-repo');
-
-    $$('.card').forEach(function (card) {
-      card.addEventListener('click', function () {
-        sTitle.textContent = card.dataset.title || '';
-        sStack.textContent = card.dataset.stack || '';
-        sBody.textContent  = card.dataset.body || '';
-
-        var repo = card.dataset.repo;
-        if (repo) { sRepo.setAttribute('href', repo); sRepo.hidden = false; }
-        else { sRepo.removeAttribute('href'); sRepo.hidden = true; }
-
-        if (typeof sheet.showModal === 'function') sheet.showModal();
-        else sheet.setAttribute('open', '');
-      });
-    });
-
-    var closeSheet = function () { sheet.close(); };
-    var sheetClose = $('#sheet-close');
-    if (sheetClose) sheetClose.addEventListener('click', closeSheet);
-
-    // Click on the backdrop (outside the dialog box) closes it.
-    sheet.addEventListener('click', function (e) {
-      var r = sheet.getBoundingClientRect();
-      var inside = e.clientX >= r.left && e.clientX <= r.right &&
-                   e.clientY >= r.top  && e.clientY <= r.bottom;
-      if (!inside) closeSheet();
-    });
-  }
-
-  /* ---------- Command palette ---------- */
-  var palette = $('#palette');
-  if (palette && typeof palette.showModal === 'function') {
-    var q     = $('#palette-q');
-    var list  = $('#palette-list');
-    var index = 0;
-
-    var items = [
-      { label: 'Home',                 hint: 'top',     href: '#top' },
-      { label: 'About',                hint: '01',      href: '#about' },
-      { label: 'How I work',           hint: '02',      href: '#process' },
-      { label: 'Experience',           hint: '03',      href: '#experience' },
-      { label: 'Work',                 hint: '04',      href: '#work' },
-      { label: 'Toolkit',              hint: '05',      href: '#toolkit' },
-      { label: 'Background',           hint: '06',      href: '#background' },
-      { label: 'Contact',              hint: '07',      href: '#contact' },
-      { label: 'Email me',             hint: 'mail',    href: 'mailto:magistradozach@gmail.com', ext: true },
-      { label: 'GitHub',               hint: 'ext',     href: 'https://github.com/0xzso7', ext: true },
-      { label: 'LinkedIn',             hint: 'ext',     href: 'https://www.linkedin.com/in/zsmagistrado/', ext: true },
-      { label: 'Toggle light / dark',  hint: 'theme',   action: 'theme' }
-    ];
-
-    function render(filter) {
-      var needle = (filter || '').trim().toLowerCase();
-      var hits = items.filter(function (it) {
-        return !needle || it.label.toLowerCase().indexOf(needle) !== -1;
-      });
-      index = 0;
-      list.innerHTML = '';
-
-      if (!hits.length) {
-        var empty = document.createElement('li');
-        empty.className = 'palette-empty';
-        empty.textContent = 'Nothing matches that.';
-        list.appendChild(empty);
-        return;
-      }
-
-      hits.forEach(function (it, i) {
-        var li = document.createElement('li');
-        var b  = document.createElement('button');
-        b.type = 'button';
-        b.className = i === 0 ? 'on' : '';
-        b.innerHTML = '<span></span><em></em>';
-        b.firstChild.textContent = it.label;
-        b.lastChild.textContent = it.hint;
-        b.addEventListener('click', function () { run(it); });
-        b.addEventListener('mousemove', function () { mark(i); });
-        li.appendChild(b);
-        list.appendChild(li);
-      });
-    }
-
-    function buttons() { return $$('button', list); }
-
-    function mark(i) {
-      var bs = buttons();
-      if (!bs.length) return;
-      index = (i + bs.length) % bs.length;
-      bs.forEach(function (b, n) { b.classList.toggle('on', n === index); });
-      bs[index].scrollIntoView({ block: 'nearest' });
-    }
-
-    function run(it) {
-      palette.close();
-      if (it.action === 'theme') { toggle && toggle.click(); return; }
-      if (it.ext) { window.open(it.href, it.href.indexOf('mailto:') === 0 ? '_self' : '_blank', 'noopener'); return; }
-      var target = document.querySelector(it.href === '#top' ? 'body' : it.href);
-      if (target) {
-        target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-        history.replaceState(null, '', it.href);
-      }
-    }
-
-    function openPalette() {
-      render('');
-      palette.showModal();
-      q.value = '';
-      q.focus();
-    }
-
-    var opener = $('#palette-open');
-    if (opener) opener.addEventListener('click', openPalette);
-
-    q.addEventListener('input', function () { render(q.value); });
-
-    palette.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowDown') { e.preventDefault(); mark(index + 1); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); mark(index - 1); }
-      else if (e.key === 'Enter') {
-        e.preventDefault();
-        var bs = buttons();
-        if (bs[index]) bs[index].click();
-      }
-    });
-
-    palette.addEventListener('click', function (e) {
-      if (e.target === palette) palette.close();
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        if (palette.open) palette.close(); else openPalette();
-      }
-    });
-  } else {
-    // No <dialog> support, so the hint button would do nothing. Hide it.
-    var hint = $('#palette-open');
-    if (hint) hint.style.display = 'none';
-  }
-
-  /* ---------- Metric links open the entry that explains them ---------- */
-  function openHighlight(hash) {
-    if (!hash || hash.length < 2) return;
-    var target = document.getElementById(hash.slice(1));
-    if (!target || target.tagName !== 'DETAILS') return;
-    target.open = true;
-    target.classList.add('flash');
-    setTimeout(function () { target.classList.remove('flash'); }, 1600);
-  }
-
-  $$('.metric').forEach(function (link) {
-    link.addEventListener('click', function () {
-      openHighlight(link.getAttribute('href'));
-    });
-  });
-  window.addEventListener('hashchange', function () { openHighlight(location.hash); });
-  openHighlight(location.hash);
-
-  /* ---------- Pause the hero light once it scrolls away ---------- */
-  /* The ray layers are the most expensive thing on the page. Once the hero is
-     off screen there is nothing to look at, so stop compositing them entirely. */
-  var heroEl = $('.hero');
-  if (heroEl && 'IntersectionObserver' in window && typeof heroEl.getAnimations === 'function') {
-    var lit = $$('.ray').concat($$('.hero-glow'));
-    new IntersectionObserver(function (entries) {
-      var visible = entries[0].isIntersecting;
-      lit.forEach(function (el) {
-        el.getAnimations().forEach(function (a) {
-          if (visible) { a.play(); } else { a.pause(); }
-        });
-      });
-    }, { threshold: 0 }).observe(heroEl);
-  }
-
-  /* ---------- Projects carousel ---------- */
-  var track = $('#work-track');
-  if (track) {
-    var prev = $('#work-prev');
-    var next = $('#work-next');
-
-    function step() {
-      var card = track.querySelector('.card');
-      if (!card) return track.clientWidth;
-      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      return card.getBoundingClientRect().width + gap;
-    }
-
-    function syncButtons() {
-      var max = track.scrollWidth - track.clientWidth;
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= max - 2;
-    }
-
-    function scrollBy(dir) {
-      track.scrollBy({ left: dir * step(), behavior: reduced ? 'auto' : 'smooth' });
-      // Sync straight away rather than waiting on the scroll event, which does not
-      // always land before the button is next painted.
-      syncButtons();
-      setTimeout(syncButtons, 420);
-    }
-
-    prev.addEventListener('click', function () { scrollBy(-1); });
-    next.addEventListener('click', function () { scrollBy(1); });
-
-    // Arrow keys work when the track itself has focus.
-    track.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); scrollBy(1); }
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); scrollBy(-1); }
-    });
-
-    var scrollTick = false;
-    track.addEventListener('scroll', function () {
-      if (scrollTick) return;
-      scrollTick = true;
-      requestAnimationFrame(function () { syncButtons(); scrollTick = false; });
-    }, { passive: true });
-
-    window.addEventListener('resize', syncButtons);
-    syncButtons();
-
-    // Tabbing to a card that is scrolled out of view should bring it into view.
-    $$('.card', track).forEach(function (card) {
-      card.addEventListener('focus', function () {
-        card.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' });
-      });
-    });
-  }
-
-  /* ---------- Contact form ---------- */
-  var form = $('#contact-form');
-  if (form) {
-    var status  = $('#form-status');
-    var sendBtn = $('#form-submit');
-    var done    = $('#form-done');
-    var again   = $('#form-again');
-    var EMAIL   = 'magistradozach@gmail.com';
-
-    // Take over validation so the messages match the rest of the page.
-    // Left to the browser when JS is unavailable.
-    form.noValidate = true;
-
-    var checks = [
-      { id: 'f-name',  wrap: 'wrap-name',  err: 'err-name',
-        test: function (v) { return v.trim().length > 0; },
-        msg: 'Please enter your name.' },
-      { id: 'f-email', wrap: 'wrap-email', err: 'err-email',
-        test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
-        msg: 'Please enter a valid email address so I can reply.' },
-      { id: 'f-msg',   wrap: 'wrap-msg',   err: 'err-msg',
-        test: function (v) { return v.trim().length > 0; },
-        msg: 'Please write a message.' }
-    ];
-
-    function setFieldError(c, message) {
-      var wrap = document.getElementById(c.wrap);
-      var slot = document.getElementById(c.err);
-      var input = document.getElementById(c.id);
-      wrap.classList.toggle('invalid', !!message);
-      slot.textContent = message || '';
-      input.setAttribute('aria-invalid', message ? 'true' : 'false');
-    }
-
-    function validate(focusFirst) {
-      var firstBad = null;
-      checks.forEach(function (c) {
-        var input = document.getElementById(c.id);
-        var bad = !c.test(input.value);
-        setFieldError(c, bad ? c.msg : '');
-        if (bad && !firstBad) firstBad = input;
-      });
-      if (firstBad && focusFirst) firstBad.focus();
-      return !firstBad;
-    }
-
-    // Clear a field's error as soon as it becomes valid again.
-    checks.forEach(function (c) {
-      var input = document.getElementById(c.id);
-      input.addEventListener('input', function () {
-        if (c.test(input.value)) setFieldError(c, '');
-      });
-      input.addEventListener('blur', function () {
-        if (input.value.trim()) setFieldError(c, c.test(input.value) ? '' : c.msg);
-      });
-    });
-
-    function say(message, isError) {
-      status.innerHTML = message;
-      status.classList.toggle('is-error', !!isError);
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      say('', false);
-
-      if (!validate(true)) {
-        say('Please fix the fields above and try again.', true);
-        return;
-      }
-
-      sendBtn.disabled = true;
-      sendBtn.textContent = 'Sending...';
-
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' }
-      }).then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        form.hidden = true;
-        done.hidden = false;
-        done.querySelector('h3').focus && done.querySelector('h3').focus();
-      }).catch(function () {
-        say('That did not send. You can email me directly at ' +
-            '<a href="mailto:' + EMAIL + '">' + EMAIL + '</a>.', true);
-      }).then(function () {
-        sendBtn.disabled = false;
-        sendBtn.textContent = 'Send message';
-      });
-    });
-
-    if (again) {
-      again.addEventListener('click', function () {
-        form.reset();
-        checks.forEach(function (c) { setFieldError(c, ''); });
-        say('', false);
-        done.hidden = true;
-        form.hidden = false;
-        document.getElementById('f-name').focus();
-      });
-    }
-  }
-
-  /* ---------- Textarea autogrow ---------- */
-  document.addEventListener('input', function (e) {
-    var t = e.target;
-    if (t && t.tagName === 'TEXTAREA') {
-      t.style.height = 'auto';
-      t.style.height = t.scrollHeight + 'px';
-    }
-  });
-
   /* ---------- Footer year ---------- */
-  var year = $('#year');
+  var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
+
+  /* ---------- Noise field behind the intro ----------
+     Draws repeated 0xzso7 on two canvases inside #noise:
+       base: every character, painted once (and again only on resize or theme change);
+       fx:   only the characters that are currently glowing or glitching.
+     The fx layer is redrawn in a requestAnimationFrame loop that runs only while something is
+     changing, so the page does no work at all while idle. Colours come from CSS (--noise-*). */
+  (function noiseField() {
+    var host = document.getElementById('noise');
+    if (!host || !document.createElement('canvas').getContext) return;
+    var hero = host.parentElement;
+    var textBox = hero.querySelector('.intro-text');
+    var TEXT = host.getAttribute('data-text') || '0xzso7';
+    var RATE = parseFloat(host.getAttribute('data-glitch-rate')) || 14; // glitches per second at desktop size
+    var FADE = 2000;                                                    // trail fade, ms
+    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var base = document.createElement('canvas');
+    var fx = document.createElement('canvas');
+    host.appendChild(base);
+    host.appendChild(fx);
+    var bctx = base.getContext('2d');
+    var fctx = fx.getContext('2d');
+
+    // Grid state (typed arrays: one entry per character cell).
+    var cols = 0, rows = 0, stepX = 0, lineH = 0, fontPx = 13, w = 0, h = 0;
+    var chr, tier, fade, lit, gEnd, gKind;
+    var trail = [];        // cells that are glowing
+    var glitches = [];     // cells that are glitching
+    var theme = {};
+    var current = -1;      // cell under the pointer
+    var lastX = null, lastY = null;
+    var visible = true, raf = 0, glitchTimer = 0;
+    var sprite = document.createElement('canvas');   // soft glow, pre-drawn once (cheaper than shadowBlur)
+    var dirty = null;                                // area of the fx layer drawn last frame
+
+    function readTheme() {
+      var cs = getComputedStyle(host);
+      theme.rgb = cs.getPropertyValue('--noise-rgb').trim();
+      theme.alpha = cs.getPropertyValue('--noise-alpha').split(',').map(parseFloat);
+      theme.hover = cs.getPropertyValue('--noise-hover').trim();
+      theme.glow = cs.getPropertyValue('--noise-glow').trim();
+    }
+
+    // Deterministic 0..1 value per cell, so a rebuild keeps the same pattern.
+    function hash(i, salt) {
+      var x = Math.sin(i * 12.9898 + salt * 78.233) * 43758.5453;
+      return x - Math.floor(x);
+    }
+    function smooth(e0, e1, x) {
+      var t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0)));
+      return t * t * (3 - 2 * t);
+    }
+
+    function build() {
+      w = hero.clientWidth; h = hero.clientHeight;
+      if (!w || !h) return;
+      readTheme();
+      fontPx = w <= 640 ? 11 : 13;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      [base, fx].forEach(function (c) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); });
+      [bctx, fctx].forEach(function (c) {
+        c.setTransform(dpr, 0, 0, dpr, 0, 0);   // resizing a canvas resets its state, so set it again
+        c.font = fontPx + 'px "JetBrains Mono", ui-monospace, Menlo, monospace';
+        c.textBaseline = 'middle';
+      });
+      stepX = bctx.measureText('0').width + fontPx * 0.04;
+      var r = Math.round(fontPx * 0.9), sctx = sprite.getContext('2d');
+      sprite.width = sprite.height = r * 2 * dpr;
+      sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var g = sctx.createRadialGradient(r, r, 0, r, r, r);
+      g.addColorStop(0, theme.glow); g.addColorStop(1, 'rgba(0,0,0,0)');
+      sctx.fillStyle = g; sctx.fillRect(0, 0, r * 2, r * 2);
+      sprite.r = r;
+      lineH = fontPx * 1.6;
+      cols = Math.ceil(w / stepX); rows = Math.ceil(h / lineH);
+      var n = cols * rows;
+      chr = new Uint8Array(n); tier = new Uint8Array(n); fade = new Float32Array(n);
+      lit = new Float32Array(n); gEnd = new Float64Array(n); gKind = new Uint8Array(n);
+      trail = []; glitches = []; current = -1;
+
+      // Thin the texture behind the name and lines with a soft oval (no edges, so it never reads
+      // as a box or a shadow): about a fifth of the strength at the centre, full strength outside.
+      var hb = hero.getBoundingClientRect(), tb = textBox ? textBox.getBoundingClientRect() : null;
+      var ocx = tb ? (tb.left + tb.right) / 2 - hb.left : 0, ocy = tb ? (tb.top + tb.bottom) / 2 - hb.top : 0;
+      var orx = tb ? tb.width / 2 + 220 : 1, ory = tb ? tb.height / 2 + 150 : 1;
+
+      for (var y = 0; y < rows; y++) {
+        var shift = (y * 4) % TEXT.length;
+        var cy = y * lineH + lineH / 2;
+        var fy = smooth(0, h * 0.18, cy) * (1 - smooth(h * 0.78, h, cy));
+        for (var x = 0; x < cols; x++) {
+          var i = y * cols + x, cx = x * stepX + stepX / 2;
+          var fx_ = smooth(0, w * 0.08, cx) * (1 - smooth(w * 0.92, w, cx));
+          var od = tb ? Math.hypot((cx - ocx) / orx, (cy - ocy) / ory) : 2;
+          var clear = 0.22 + 0.78 * smooth(0.45, 1.25, od);
+          chr[i] = (x + shift) % TEXT.length;
+          tier[i] = Math.floor(hash(i, 1) * 4);
+          fade[i] = fx_ * fy * clear;
+        }
+      }
+      drawBase();
+      fctx.clearRect(0, 0, w, h);
+      dirty = null;
+    }
+
+    function cellX(i) { return (i % cols) * stepX; }
+    function cellY(i) { return Math.floor(i / cols) * lineH + lineH / 2; }
+    function baseAlpha(i) { return theme.alpha[tier[i]] * fade[i]; }
+
+    function drawCellBase(i) {
+      var a = baseAlpha(i);
+      bctx.clearRect(cellX(i), cellY(i) - lineH / 2, stepX, lineH);
+      if (a < 0.008) return;
+      bctx.globalAlpha = a;
+      bctx.fillText(TEXT.charAt(chr[i]), cellX(i), cellY(i));
+    }
+    function drawBase() {
+      bctx.clearRect(0, 0, w, h);
+      bctx.fillStyle = 'rgb(' + theme.rgb + ')';
+      for (var i = 0; i < chr.length; i++) {
+        var a = baseAlpha(i);
+        if (a < 0.008) continue;
+        bctx.globalAlpha = a;
+        bctx.fillText(TEXT.charAt(chr[i]), cellX(i), cellY(i));
+      }
+      bctx.globalAlpha = 1;
+    }
+
+    /* ---- Cursor trail ---- */
+    function light(px, py) {
+      var x = Math.floor(px / stepX), y = Math.floor(py / lineH);
+      if (x < 0 || y < 0 || x >= cols || y >= rows) return -1;
+      var i = y * cols + x;
+      if (!lit[i]) trail.push(i);
+      lit[i] = performance.now();   // time it was last lit
+      return i;
+    }
+    function onMove(e) {
+      if (!cols) return;
+      var r = hero.getBoundingClientRect();
+      var x = e.clientX - r.left, y = e.clientY - r.top;
+      // Fill in the cells between two pointer events so fast sweeps leave a continuous trail.
+      if (lastX !== null) {
+        var dx = x - lastX, dy = y - lastY, n = Math.ceil(Math.hypot(dx, dy) / (stepX * 0.8));
+        for (var k = 1; k < n; k++) light(lastX + dx * k / n, lastY + dy * k / n);
+      }
+      current = light(x, y);
+      lastX = x; lastY = y;
+      kick();
+    }
+    function onLeave() { current = -1; lastX = lastY = null; kick(); }
+
+    /* ---- Glitches ---- */
+    function scheduleGlitch() {
+      clearTimeout(glitchTimer);
+      if (calm || !visible || document.hidden || !cols) return;
+      var perSecond = RATE * (chr.length / 4000);
+      glitchTimer = setTimeout(function () {
+        for (var tries = 0; tries < 6; tries++) {
+          var i = Math.floor(Math.random() * chr.length);
+          if (fade[i] < 0.2 || gEnd[i]) continue;
+          gEnd[i] = performance.now() + 80 + Math.random() * 90;   // 80–170ms
+          gKind[i] = Math.floor(Math.random() * 4);                // shift, flicker, flash, swap
+          glitches.push(i);
+          bctx.clearRect(cellX(i), cellY(i) - lineH / 2, stepX, lineH);   // the fx layer draws it meanwhile
+          kick();
+          break;
+        }
+        scheduleGlitch();
+      }, (1000 / Math.max(perSecond, 0.5)) * (0.4 + Math.random() * 1.2));
+    }
+
+    /* ---- Frame loop: only runs while something is glowing or glitching ---- */
+    function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+    function frame(now) {
+      raf = 0;
+      if (dirty) fctx.clearRect(dirty[0], dirty[1], dirty[2] - dirty[0], dirty[3] - dirty[1]);
+      dirty = null;
+      var busy = false, i, k, pad = sprite.r || 18;
+      function mark(x, y) {
+        if (!dirty) dirty = [x - pad, y - pad, x + stepX + pad, y + pad];
+        else {
+          if (x - pad < dirty[0]) dirty[0] = x - pad;
+          if (y - pad < dirty[1]) dirty[1] = y - pad;
+          if (x + stepX + pad > dirty[2]) dirty[2] = x + stepX + pad;
+          if (y + pad > dirty[3]) dirty[3] = y + pad;
+        }
+      }
+
+      // Trail: bright under the cursor, then dim, then dark over FADE ms.
+      for (k = trail.length - 1; k >= 0; k--) {
+        i = trail[k];
+        if (i === current) lit[i] = now;
+        var age = now - lit[i];
+        var t = calm ? (i === current ? 0 : 1) : age / FADE;
+        if (t >= 1) { lit[i] = 0; trail.splice(k, 1); continue; }
+        var glow = Math.pow(1 - t, 2.2) * Math.max(fade[i], 0.3);
+        var gx = cellX(i), gy = cellY(i);
+        if (glow > 0.35) {   // only the brightest part of the trail gets a halo, so it never smears into a band
+          fctx.globalAlpha = (glow - 0.35) * 1.2;
+          fctx.drawImage(sprite, gx + stepX / 2 - pad, gy - pad, pad * 2, pad * 2);
+        }
+        fctx.globalAlpha = Math.max(glow, baseAlpha(i));
+        fctx.fillStyle = theme.hover;
+        fctx.fillText(TEXT.charAt(chr[i]), gx, gy);
+        mark(gx, gy);
+        if (i !== current || trail.length > 1) busy = true;
+      }
+
+      // Glitches: drawn on the fx layer, then the base cell is restored.
+      for (k = glitches.length - 1; k >= 0; k--) {
+        i = glitches[k];
+        if (now >= gEnd[i]) { gEnd[i] = 0; glitches.splice(k, 1); drawCellBase(i); continue; }
+        busy = true;
+        if (lit[i]) continue;   // the trail is already drawing this cell
+        var a = baseAlpha(i), x = cellX(i), y = cellY(i), ch = TEXT.charAt(chr[i]);
+        mark(x, y);
+        fctx.fillStyle = 'rgb(' + theme.rgb + ')';
+        if (gKind[i] === 0) { fctx.globalAlpha = Math.min(1, a * 2.4); fctx.fillText(ch, x + 1.5, y); }
+        else if (gKind[i] === 1) { if ((now / 40 | 0) % 2) { fctx.globalAlpha = a; fctx.fillText(ch, x, y); } }
+        else if (gKind[i] === 2) { fctx.globalAlpha = Math.min(1, a * 4); fctx.fillText(ch, x, y); }
+        else { fctx.globalAlpha = Math.min(1, a * 2); fctx.fillText(TEXT.charAt((chr[i] + 3) % TEXT.length), x, y); }
+      }
+      fctx.globalAlpha = 1;
+      if (busy) kick();
+    }
+
+    /* ---- Lifecycle ---- */
+    function start() {
+      build();
+      hero.addEventListener('pointermove', onMove, { passive: true });
+      hero.addEventListener('pointerleave', onLeave, { passive: true });
+      scheduleGlitch();
+    }
+    if (document.fonts && document.fonts.load) {
+      document.fonts.load('13px "JetBrains Mono"').then(start, start);
+    } else {
+      start();
+    }
+
+    var resizeTimer = 0, lastW = 0, lastH = 0;
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(function () {
+        if (hero.clientWidth === lastW && hero.clientHeight === lastH) return;
+        lastW = hero.clientWidth; lastH = hero.clientHeight;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () { build(); scheduleGlitch(); }, 150);
+      }).observe(hero);
+    }
+    if (window.matchMedia) {
+      var dark = matchMedia('(prefers-color-scheme: dark)');
+      var onTheme = function () { build(); };
+      if (dark.addEventListener) dark.addEventListener('change', onTheme); else if (dark.addListener) dark.addListener(onTheme);
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        scheduleGlitch();
+      }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', scheduleGlitch);
+  })();
+
+  /* ---------- Portrait slot ----------
+     Shows the ZM monogram until Assets/images/portrait.jpg exists. The image can fail before this
+     deferred script runs, so check its state as well as listening for the event. */
+  var portrait = document.getElementById('portrait');
+  if (portrait) {
+    var img = portrait.querySelector('img');
+    var empty = function () { portrait.classList.add('is-empty'); };
+    if (!img || (img.complete && img.naturalWidth === 0)) empty();
+    else img.addEventListener('error', empty);
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  var items = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  items.forEach(function (el) { io.observe(el); });
 })();
