@@ -8,6 +8,19 @@
   setBar();
   window.addEventListener('resize', setBar);
 
+  /* ---------- Phone menu ---------- */
+  var menuBtn = document.getElementById('menu-btn');
+  if (bar && menuBtn) {
+    var setMenu = function (open) {
+      bar.classList.toggle('is-open', open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    menuBtn.addEventListener('click', function (e) { e.stopPropagation(); setMenu(!bar.classList.contains('is-open')); });
+    bar.querySelectorAll('.bar-links a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('click', function (e) { if (!bar.contains(e.target)) setMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  }
+
   /* ---------- Footer year ---------- */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
@@ -69,7 +82,8 @@
       w = hero.clientWidth; h = hero.clientHeight;
       if (!w || !h) return;
       readTheme();
-      fontPx = w <= 640 ? 11 : 13;
+      var small = w <= 640;
+      fontPx = small ? 10 : 13;
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
       [base, fx].forEach(function (c) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); });
       [bctx, fctx].forEach(function (c) {
@@ -106,7 +120,8 @@
           var i = y * cols + x, cx = x * stepX + stepX / 2;
           var fx_ = smooth(0, w * 0.08, cx) * (1 - smooth(w * 0.92, w, cx));
           var od = tb ? Math.hypot((cx - ocx) / orx, (cy - ocy) / ory) : 2;
-          var clear = 0.22 + 0.78 * smooth(0.45, 1.25, od);
+          // On phones the text fills the width, so fade the texture harder behind it and overall.
+          var clear = small ? (0.1 + 0.9 * smooth(0.55, 1.35, od)) * 0.45 : 0.22 + 0.78 * smooth(0.45, 1.25, od);
           chr[i] = (x + shift) % TEXT.length;
           tier[i] = Math.floor(hash(i, 1) * 4);
           fade[i] = fx_ * fy * clear;
