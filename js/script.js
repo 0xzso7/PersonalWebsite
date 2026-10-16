@@ -1,6 +1,13 @@
 (function () {
   'use strict';
 
+  /* ---------- Hero height ----------
+     The hero fills the screen below the top bar; the bar wraps on phones, so measure it. */
+  var bar = document.getElementById('bar');
+  var setBar = function () { if (bar) document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px'); };
+  setBar();
+  window.addEventListener('resize', setBar);
+
   /* ---------- Footer year ---------- */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());

@@ -100,7 +100,7 @@ img { display: block; max-width: 100%; }
 .skip-link:focus { transform: none; }
 
 /* Headings: semi-condensed and heavy, but in normal case. */
-.name, .h2, .role-title, .contact-h, .num-v, .entry-t {
+.name, .h2, .contact-h, .num-v, .entry-t {
   font-family: var(--sans); font-stretch: 75%; font-weight: 800; letter-spacing: -.02em;
 }
 
@@ -116,21 +116,33 @@ img { display: block; max-width: 100%; }
 .bar a:hover { color: var(--accent); }
 
 /* ---------- Intro ---------- */
+/* The top bar plus the hero fill 93% of the screen, so the top of the race strip peeks in; --bar-h is the bar's measured height
+   (set by script.js; 72px is the desktop fallback). */
+.hero { display: flex; flex-direction: column; min-height: calc(93svh - var(--bar-h, 72px)); }
 .intro {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 48px;
-  padding-top: clamp(48px, 9vw, 120px); padding-bottom: clamp(56px, 9vw, 110px);
+  flex: 1;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; align-content: center; gap: 48px;
+  padding-top: 32px; padding-bottom: 72px;
 }
-.kicker { color: var(--soft); }
-.name { margin-top: 18px; font-size: clamp(3.2rem, 9vw, 7.5rem); line-height: .9; }
-.lede { margin-top: 22px; font-size: clamp(1.25rem, 2.2vw, 1.7rem); line-height: 1.3; }
+.name { font-size: clamp(3.2rem, 9vw, 7.5rem); line-height: .9; }
+/* 0x00: the role, as entry zero of the site's hex count. It sits tight under the name as a
+   second, quieter headline; the hex number hangs at the left like the Experience rows. */
+.zero { display: flex; align-items: baseline; gap: 14px; margin-top: 14px; }
+.zero .hex { font-size: .85rem; }
+.zero-t {
+  font-stretch: 75%; font-weight: 700; letter-spacing: -.01em;
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem); line-height: 1; color: var(--soft);
+}
+.lede { margin-top: 28px; font-size: clamp(1.25rem, 2.2vw, 1.7rem); line-height: 1.3; }
 /* Beige keywords: brass on the light page (beige itself is too faint there), beige in dark mode. */
 .hl { color: var(--accent); }
-.lede::after { content: ''; display: inline-block; width: .5em; height: .1em; margin-left: .15em; background: var(--accent); vertical-align: .1em; }
-.stack { margin-top: 28px; color: var(--soft); }
+.stack { margin-top: 22px; color: var(--soft); }
+.stack-sep { display: inline-block; width: 22px; height: 1px; margin: 0 12px; background: var(--rule-2); vertical-align: middle; opacity: .5; }
 .intro-text > * { animation: rise .8s var(--ease) both; }
 .intro-text > :nth-child(2) { animation-delay: .05s; }
 .intro-text > :nth-child(3) { animation-delay: .1s; }
 .intro-text > :nth-child(4) { animation-delay: .15s; }
+.intro-text > :nth-child(5) { animation-delay: .2s; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
 
 /* The portrait is a small photo print, slightly crooked. */
@@ -240,23 +252,36 @@ img { display: block; max-width: 100%; }
 .section-head .mono { text-align: right; color: var(--soft); }
 .h2 { font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: .9; }
 
-/* ---------- Experience ---------- */
-.role { padding: 36px 0 40px; border-bottom: 1px solid var(--rule); }
-.role-last { border-bottom: 0; }
-.role-head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
-.role-title { font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.05; }
-.role-org { margin-top: 6px; font-size: 1rem; color: var(--soft); }
-.role-date { flex: none; padding: 3px 9px; font-size: .82rem; color: var(--accent); background: var(--tint); border: 1px solid var(--tint-line); }
-.role-desc { max-width: 60ch; margin-top: 14px; color: var(--soft); }
+/* ---------- Experience (case file) ----------
+   Each employer is a two-column "case": the company sits on the left and stays pinned while you
+   scroll its entries on the right. An open entry shows a few short labelled lines. */
+.case {
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 2.1fr); gap: 56px;
+  padding: 48px 0 52px; border-bottom: 1px solid var(--rule);
+}
+.case-last { border-bottom: 0; }
+.case-side { position: sticky; top: 28px; align-self: start; }
+.case-co {
+  font-stretch: 75%; font-weight: 800; letter-spacing: -.02em;
+  font-size: clamp(2.2rem, 4.2vw, 3.6rem); line-height: .9;
+}
+.case-role { margin-top: 12px; font-size: 1.05rem; }
+.case-meta { margin-top: 14px; color: var(--accent); }
+.case-stack { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--soft); max-width: 26ch; }
+.case-sub {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 18px 0 8px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em;
+}
+.case-sub:first-child { padding-top: 0; }
 
 /* The hex list of what I did. */
-.did { margin-top: 26px; border-top: 1px solid var(--rule); }
-.entry, .did-plain li { border-bottom: 1px solid var(--rule); }
-.entry summary, .did-plain li {
+.did { border-top: 1px solid var(--rule); }
+.did > .case-sub:first-child { border: 0; }
+.entry { border-bottom: 1px solid var(--rule); }
+.entry summary {
   display: grid; grid-template-columns: 6ch minmax(0, 1fr) auto 18px; align-items: center; gap: 18px;
   padding: 13px 12px; margin: 0 -12px;
 }
-.did-plain li { grid-template-columns: 6ch minmax(0, 1fr) auto; padding: 13px 0; margin: 0; }
 /* The role's own bottom rule closes the list, so the last row needs none. */
 .did > :last-child { border-bottom: 0; }
 .entry summary { cursor: pointer; list-style: none; transition: background-color .2s, color .2s; }
@@ -280,8 +305,14 @@ img { display: block; max-width: 100%; }
 }
 .toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
 .entry[open] .toggle { transform: rotate(45deg); }
-.entry p { max-width: 64ch; padding: 16px 0 24px calc(6ch + 18px); color: var(--soft); }
-.entry[open] p { animation: open .35s var(--ease); }
+.pfr {
+  display: grid; grid-template-columns: 8ch minmax(0, 1fr); gap: 6px 16px; align-items: baseline;
+  margin: 0; padding: 16px 0 22px calc(6ch + 18px);
+}
+.pfr dt { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+.pfr dd { margin: 0; color: var(--soft); }
+.entry[open] .pfr { animation: open .35s var(--ease); }
+.gh { color: var(--accent); border-bottom: 1px solid currentColor; }
 @keyframes open { from { opacity: 0; transform: translateY(-6px); } }
 
 /* ---------- Toolkit ---------- */
@@ -305,7 +336,6 @@ img { display: block; max-width: 100%; }
 .fact-s { color: var(--soft); font-size: .92rem; }
 .fact-d { color: var(--faint); }
 
-.gh { display: inline-block; margin-left: .25em; color: var(--accent); border-bottom: 1px solid currentColor; }
 .gh:hover { color: var(--fg); }
 
 /* ---------- Contact ---------- */
@@ -425,15 +455,18 @@ img { display: block; max-width: 100%; }
   .bar { flex-wrap: wrap; gap: 10px 16px; }
   .bar-links { flex-wrap: wrap; gap: 6px 16px; }
   .intro { grid-template-columns: 1fr; gap: 36px; }
+  .stack-sep { display: block; width: 0; height: 6px; margin: 0; }
   .stamp { justify-self: end; width: 42%; margin-top: -8px; }
   .lane { grid-template-columns: 1fr; gap: 6px; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .section-head .mono { text-align: left; }
-  .role-head { flex-direction: column-reverse; gap: 8px; }
+  .case { grid-template-columns: 1fr; gap: 24px; padding: 36px 0 40px; }
+  .case-side { position: static; }
+  .case-stack { max-width: none; }
   .entry summary { grid-template-columns: 5ch minmax(0, 1fr) 18px; row-gap: 4px; gap: 12px; }
-  .did-plain li { grid-template-columns: 5ch minmax(0, 1fr); row-gap: 4px; gap: 12px; }
-  .entry-tag { grid-row: 2; grid-column: 2; }
-  .entry p { padding-left: calc(5ch + 12px); }
+  .entry-tag { grid-row: 2; grid-column: 2; justify-self: start; }
+  .pfr { grid-template-columns: 1fr; gap: 2px; padding-left: calc(5ch + 12px); }
+  .pfr dd + dt { margin-top: 8px; }
   .tools, .bg-grid { grid-template-columns: 1fr; gap: 32px; }
   .contact-bar { flex-direction: column; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }

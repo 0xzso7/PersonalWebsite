@@ -21,7 +21,7 @@
 <body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="bar wrap">
+<header class="bar wrap" id="bar">
   <a class="handle" href="#top">0xzso7</a>
   <nav class="bar-links" aria-label="Sections">
     <a href="#experience">Experience</a>
@@ -41,10 +41,11 @@
 
   <div class="intro wrap">
   <div class="intro-text">
-    <p class="mono kicker">Software engineer · Metro Manila · UTC+8</p>
     <h1 class="name">Zach <span class="hl">Magistrado</span></h1>
+    <!-- Entry zero of the hex count used across the site: the role itself. -->
+    <p class="zero"><span class="hex">0x00</span><span class="zero-t">Software Engineer</span></p>
     <p class="lede">I fix what <span class="hl">only breaks sometimes</span>.</p>
-    <p class="mono stack">Angular · Django · PostgreSQL · AWS Lambda · BigQuery</p>
+    <p class="mono stack">Angular · Django · PostgreSQL · AWS Lambda · BigQuery<span class="stack-sep" aria-hidden="true"></span>Metro Manila, UTC+8</p>
   </div>
 
   <!-- Web-sized copies of Assets/images/portrait.jpg (480px and 960px, WebP with JPEG fallback). -->
@@ -57,6 +58,7 @@
     <span class="stamp-fallback" aria-hidden="true">ZM</span>
   </figure>
   </div>
+
 </section>
 
 <!-- ───────── The race ───────── -->
@@ -87,164 +89,127 @@
     <p class="mono">What I did is numbered in hex.<br>Open a line for the details.</p>
   </div>
 
-  <!-- Enstack -->
-  <article class="role" data-reveal>
-    <div class="role-head">
-      <div>
-        <h3 class="role-title">Software Engineer</h3>
-        <p class="role-org">Enstack</p>
-      </div>
-      <p class="role-date mono">2025 – Now</p>
+  <article class="case" data-reveal>
+    <div class="case-side">
+      <h3 class="case-co">Enstack</h3>
+      <p class="case-role">Software Engineer</p>
+      <p class="case-meta mono">2025 – Now<br>Metro Manila · Hybrid</p>
+      <p class="case-stack mono">Angular · Django · AWS Lambda · BigQuery</p>
     </div>
-    <p class="role-desc">Angular, Django, AWS Lambda and BigQuery for a commerce platform used by small to medium merchants in
-      the Philippines and Thailand.</p>
-
     <div class="did">
       <details class="entry">
         <summary><span class="hex">0x01</span><span class="entry-t">Offline sync race conditions</span><span class="entry-tag mono">data integrity</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>A manual save could land during the 30-second background sync and send the same changes twice, and a
-          download could overwrite edits not yet sent. Added a send lock, atomic local writes, and a pending-change
-          check before any overwrite.</p>
+        <dl class="pfr"><dt>Problem</dt><dd>Duplicate variants; edits reverting after save.</dd><dt>Fix</dt><dd>Send lock, atomic writes, pending-change check.</dd><dt>Result</dt><dd>Unsent changes never sent twice or overwritten.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x02</span><span class="entry-t">Automatic e-wallet refunds</span><span class="entry-tag mono">payments</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Added GCash to automatic refunds, a Lambda webhook that tracks refund status, and a Celery task that
-          retries PayMaya partial refunds the next day. Also fixed a race that put cancelled orders back to
-          "for pickup".</p>
+        <dl class="pfr"><dt>Problem</dt><dd>Cancelled orders came back after payment.</dd><dt>Fix</dt><dd>Refund webhook, cancel wins, Celery retries.</dd><dt>Result</dt><dd>Verified on GCash, GrabPay and PayMaya.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x03</span><span class="entry-t">Lambda audit and shared layer</span><span class="entry-tag mono">179 functions</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Mapped every function across two regions to its code and usage, then built a shared dependency layer,
-          built in Docker and versioned through SSM, and moved the first function onto it.</p>
+        <dl class="pfr"><dt>Problem</dt><dd>No map of what 179 functions did.</dd><dt>Fix</dt><dd>Audited all; shared layer via Docker and SSM.</dd><dt>Result</dt><dd>Layer deployed; first function moved onto it.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x04</span><span class="entry-t">Storefront speed</span><span class="entry-tag mono">~60 → 85</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Lazy routes, long-term cache headers, one font request, a prioritised banner image and less layout
-          shift, all measured on production builds. 85 in lab tests; getting past 90 needed backend changes.</p>
+        <dl class="pfr"><dt>Problem</dt><dd>Storefront scored about 60 on Lighthouse.</dd><dt>Fix</dt><dd>Lazy routes, caching, fonts, LCP image.</dd><dt>Result</dt><dd>85 in lab tests.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x05</span><span class="entry-t">KYB review queue</span><span class="entry-tag mono">81 tests</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Admin API and Angular pages for reviewing merchant verification submissions: filters, document marks,
-          and approve, reject or needs-info actions. 81 backend tests at 95.8% coverage, plus 19 frontend.</p>
+        <dl class="pfr"><dt>Built</dt><dd>Admin API and Angular review pages.</dd><dt>Result</dt><dd>81 backend tests at 95.8% coverage.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x06</span><span class="entry-t">BigQuery ETL and reports</span><span class="entry-tag mono">ETL</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>A Lambda that loads denormalized user and order tables into BigQuery with full and incremental syncs,
-          plus scheduled jobs that refresh the operations report sheets.</p>
+        <dl class="pfr"><dt>Built</dt><dd>User and order tables, full and incremental loads.</dd><dt>Result</dt><dd>Ops reports refresh on a schedule.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x07</span><span class="entry-t">Production shipping migrations</span><span class="entry-tag mono">PostgreSQL</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Courier priority, whitelist, serviceability and rate updates, written as SQL scripts with backups and
-          temp-table dry runs, and checked for duplicates afterwards.</p>
+        <dl class="pfr"><dt>Built</dt><dd>Courier priority, serviceability and rate SQL.</dd><dt>Safety</dt><dd>Backups and temp-table dry runs first.</dd><dt>Result</dt><dd>Ran in production, no duplicates.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x08</span><span class="entry-t">Checkout N+1 query</span><span class="entry-tag mono">N → 1</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Shipping validation fetched product variants once per cart item. It now runs one batched query and a
-          dictionary lookup.</p>
+        <dl class="pfr"><dt>Problem</dt><dd>Variants fetched once per cart item.</dd><dt>Fix</dt><dd>One batched query and a lookup.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x09</span><span class="entry-t">Duplicate storefront categories</span><span class="entry-tag mono">data fix</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>New devices created a second copy of each category because the app matched them by a local ID. Saving
-          now reuses a category with the same name, and the storefront merges any duplicates, with no data
-          migration needed.</p>
+        <dl class="pfr"><dt>Problem</dt><dd>New devices created duplicate categories.</dd><dt>Fix</dt><dd>Reuse by name; merge in the storefront.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x0A</span><span class="entry-t">Signup checklist that loads right away</span><span class="entry-tag mono">PH + TH</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>The onboarding to-do list was built one step at a time behind the background sync. It now loads in
-          parallel, waits for synced data so finished steps don't flash in, and clears old data on account
-          switch.</p>
+        <dl class="pfr"><dt>Problem</dt><dd>Checklist waited on the background sync.</dd><dt>Fix</dt><dd>Load in parallel; wait for synced data.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x0B</span><span class="entry-t">ShopeePay onboarding for Thailand</span><span class="entry-tag mono">full stack</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Region-specific merchant fields in the admin dashboard, an admin audit log, and CSV bulk upload that
-          validates each row.</p>
+        <dl class="pfr"><dt>Built</dt><dd>Region fields, admin audit log, CSV upload.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x0C</span><span class="entry-t">Shared dialogs and toasts</span><span class="entry-tag mono">Angular</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Picked up a teammate's work moving the Thailand merchant app's dialogs, banners and snackbars onto one
-          shared dialog and one toast service.</p>
+        <dl class="pfr"><dt>Built</dt><dd>One dialog and one toast service.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x0D</span><span class="entry-t">Nginx route documentation</span><span class="entry-tag mono">docs</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Documented every Nginx route configuration so the next person doesn't have to reverse-engineer them.</p>
+        <dl class="pfr"><dt>Built</dt><dd>Docs for every Nginx route.</dd></dl>
       </details>
     </div>
   </article>
 
-  <!-- Lambert Williams -->
-  <article class="role" data-reveal>
-    <div class="role-head">
-      <div>
-        <h3 class="role-title">WordPress &amp; Web Developer Intern</h3>
-        <p class="role-org">Lambert Williams Logistics</p>
-      </div>
-      <p class="role-date mono">Jan – Jul 2025</p>
+  <article class="case" data-reveal>
+    <div class="case-side">
+      <h3 class="case-co">Lambert Williams</h3>
+      <p class="case-role">Intern, two roles</p>
+      <p class="case-meta mono">Jan – Jul 2025<br>Parañaque City</p>
+      <p class="case-stack mono">WordPress · Elementor · AWS · SQL</p>
     </div>
-    <p class="role-desc">Seven months on the company's websites and internal systems.</p>
-
     <div class="did">
+      <p class="case-sub mono"><span>WordPress Developer Intern</span><span>Apr – Jul 2025</span></p>
       <details class="entry">
         <summary><span class="hex">0x0E</span><span class="entry-t">WordPress sites</span><span class="entry-tag mono">SEO · speed</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Built and maintained WordPress sites with a focus on SEO, responsive layout and page performance.</p>
+        <dl class="pfr"><dt>Built</dt><dd>Company sites with Elementor and custom themes.</dd></dl>
       </details>
       <details class="entry">
-        <summary><span class="hex">0x0F</span><span class="entry-t">Themes, Elementor and plugins</span><span class="entry-tag mono">WordPress</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Theme customization, Elementor page building, plugin work, web analytics and marketing automation.</p>
+        <summary><span class="hex">0x0F</span><span class="entry-t">Serverless PWA</span><span class="entry-tag mono">AWS</span><span class="toggle" aria-hidden="true"></span></summary>
+        <dl class="pfr"><dt>Built</dt><dd>Lambda, API Gateway and DynamoDB backend.</dd></dl>
       </details>
       <details class="entry">
-        <summary><span class="hex">0x10</span><span class="entry-t">Serverless PWA</span><span class="entry-tag mono">AWS</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Helped build and deploy a Progressive Web App on AWS Lambda, API Gateway, DynamoDB and IAM.</p>
+        <summary><span class="hex">0x10</span><span class="entry-t">Analytics and automation</span><span class="entry-tag mono">marketing</span><span class="toggle" aria-hidden="true"></span></summary>
+        <dl class="pfr"><dt>Built</dt><dd>Web analytics and marketing automation.</dd></dl>
       </details>
+      <p class="case-sub mono"><span>Web Developer Intern</span><span>Jan – Apr 2025</span></p>
       <details class="entry">
         <summary><span class="hex">0x11</span><span class="entry-t">HRIS for applicant tracking</span><span class="entry-tag mono">full stack</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Worked on an HR system for applicant tracking and job offer management, on both the front and back
-          end.</p>
+        <dl class="pfr"><dt>Built</dt><dd>Applicant tracking and job offers.</dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x12</span><span class="entry-t">Database work</span><span class="entry-tag mono">schemas</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Designed and updated database schemas, tightened data validation, and improved system
-          performance.</p>
+        <dl class="pfr"><dt>Built</dt><dd>Schemas, data validation, performance.</dd></dl>
       </details>
       <details class="entry">
-        <summary><span class="hex">0x13</span><span class="entry-t">IT support and networking</span><span class="entry-tag mono">hardware · LAN</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>Technical support and troubleshooting, LAN setup, and maintaining desktop and network systems.</p>
+        <summary><span class="hex">0x13</span><span class="entry-t">IT support and networking</span><span class="entry-tag mono">LAN</span><span class="toggle" aria-hidden="true"></span></summary>
+        <dl class="pfr"><dt>Built</dt><dd>LAN setup and hardware support.</dd></dl>
       </details>
     </div>
   </article>
 
-  <!-- Personal projects -->
-  <article class="role role-last" data-reveal id="projects">
-    <div class="role-head">
-      <div>
-        <h3 class="role-title">Personal projects</h3>
-        <p class="role-org">Personal and school projects</p>
-      </div>
+  <article class="case case-last" data-reveal id="projects">
+    <div class="case-side">
+      <h3 class="case-co">Projects</h3>
+      <p class="case-role">Personal and school</p>
     </div>
-
     <div class="did">
       <details class="entry">
         <summary><span class="hex">0x14</span><span class="entry-t">Simpu, a piano learning app</span><span class="entry-tag mono">Web Audio API</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>A browser app that listens to a piano through the microphone and tells you which note you played. It
-          runs the live audio through pitch detection and checks it against the note you were meant to hit.
-          <a class="gh" href="https://github.com/0xzso7/Simpu-Piano-Learning-App/tree/Test" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+        <dl class="pfr"><dt>Built</dt><dd>Hears a piano note, checks it's the right one.</dd><dt>Code</dt><dd><a class="gh" href="https://github.com/0xzso7/Simpu-Piano-Learning-App/tree/Test" target="_blank" rel="noopener">GitHub ↗</a></dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x15</span><span class="entry-t">Touristy, an AR card viewer</span><span class="entry-tag mono">Unity · Vuforia</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>A mobile AR app: point the camera at a printed card and a 3D model of the landmark appears on top of
-          it, anchored as the card moves.
-          <a class="gh" href="https://github.com/0xzso7/Touristy-AR-Tourist-Card-Viewer" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+        <dl class="pfr"><dt>Built</dt><dd>3D landmarks on printed cards.</dd><dt>Code</dt><dd><a class="gh" href="https://github.com/0xzso7/Touristy-AR-Tourist-Card-Viewer" target="_blank" rel="noopener">GitHub ↗</a></dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x16</span><span class="entry-t">Weather app</span><span class="entry-tag mono">Python · Tkinter</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>A desktop app that shows the current temperature and conditions for any city from the OpenWeatherMap
-          API, and handles failed requests and unknown cities.
-          <a class="gh" href="https://github.com/0xzso7/Weather_App" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+        <dl class="pfr"><dt>Built</dt><dd>Current conditions for any city.</dd><dt>Code</dt><dd><a class="gh" href="https://github.com/0xzso7/Weather_App" target="_blank" rel="noopener">GitHub ↗</a></dd></dl>
       </details>
       <details class="entry">
         <summary><span class="hex">0x17</span><span class="entry-t">CalQ, a calculator</span><span class="entry-tag mono">HTML · CSS · JS</span><span class="toggle" aria-hidden="true"></span></summary>
-        <p>A responsive calculator in plain JavaScript with keyboard input, chained operations, repeated equals and
-          decimals.
-          <a class="gh" href="https://github.com/0xzso7/CalQ-Simple_JavaScript_Calculator" target="_blank" rel="noopener">View on GitHub ↗</a></p>
+        <dl class="pfr"><dt>Built</dt><dd>Chained operations, keyboard input.</dd><dt>Code</dt><dd><a class="gh" href="https://github.com/0xzso7/CalQ-Simple_JavaScript_Calculator" target="_blank" rel="noopener">GitHub ↗</a></dd></dl>
       </details>
     </div>
   </article>
@@ -336,9 +301,8 @@
   <div class="wrap contact-grid">
     <div class="contact-main">
       <p class="mono contact-kicker"><span class="hex-b">0x18</span> Contact</p>
-      <h2 class="contact-h">Send me your <span class="hl-b">weirdest bug.</span></h2>
-      <p class="contact-p">A role, a project, or a bug that only shows up sometimes. Email is the fastest way to
-        reach me.</p>
+      <h2 class="contact-h">Let's ship something <span class="hl-b">solid.</span></h2>
+      <p class="contact-p">Have a role or a project in mind? Email is the fastest way to reach me.</p>
     </div>
 
     <ul class="contact-list">
